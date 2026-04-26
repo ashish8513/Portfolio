@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* Dark-first portfolio theme */
+:root {
+  --bg-deep: #030712;
+  --bg-elevated: #0b1220;
+  --accent-indigo: #6366f1;
+  --accent-cyan: #22d3ee;
+  --text-muted: #a1a1aa;
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --glow-indigo: rgba(99, 102, 241, 0.26);
+  --glow-cyan: rgba(34, 211, 238, 0.2);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: #fafafa;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Subtle grid + gradient orbs (no JS) */
+.bg-mesh {
+  background-color: var(--bg-deep);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.bg-orbs::before,
+.bg-orbs::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  width: min(50vw, 420px);
+  height: min(50vw, 420px);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orbs::before {
+  top: -10%;
+  left: -10%;
+  background: var(--glow-cyan);
+}
+
+.bg-orbs::after {
+  bottom: -10%;
+  right: -10%;
+  background: var(--glow-indigo);
+}
+
+.glass-panel {
+  background: rgba(9, 16, 28, 0.55);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    #bfdbfe 0%,
+    var(--accent-indigo) 45%,
+    var(--accent-cyan) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

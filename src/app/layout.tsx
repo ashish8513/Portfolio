@@ -1,0 +1,71 @@
+import type { Metadata } from "next";
+import { CustomCursor } from "@/components/custom-cursor";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { site } from "@/lib/content";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const title = `${site.name} — ${site.role}`;
+const description = `${site.tagline} MERN stack, React Native, Node.js, MySQL & MongoDB.`;
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: title,
+    template: `%s · ${site.name}`,
+  },
+  description,
+  keywords: [
+    "Full Stack Developer",
+    "MERN",
+    "React Native",
+    "Next.js",
+    "Node.js",
+    "MongoDB",
+    "MySQL",
+    site.name,
+  ],
+  authors: [{ name: site.name }],
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  robots: { index: true, follow: true },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-[#030712] text-zinc-50">
+        <CustomCursor />
+        <div className="bg-orbs bg-mesh min-h-full flex flex-col">{children}</div>
+      </body>
+    </html>
+  );
+}
