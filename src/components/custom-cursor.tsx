@@ -5,25 +5,25 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function CustomCursor() {
+  const [mounted, setMounted] = useState(false);
   const [hovering, setHovering] = useState(false);
-  const [enabled, setEnabled] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(pointer: fine)").matches;
-  });
+  const [enabled, setEnabled] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const smoothX = useSpring(x, { stiffness: 500, damping: 35, mass: 0.2 });
   const smoothY = useSpring(y, { stiffness: 500, damping: 35, mass: 0.2 });
 
   useEffect(() => {
+    setMounted(true);
     const mq = window.matchMedia("(pointer: fine)");
-    const onChange = (event: MediaQueryListEvent) => setEnabled(event.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
+    const sync = () => setEnabled(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
   }, []);
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!mounted || !enabled) return;
 
     const onMove = (event: MouseEvent) => {
       x.set(event.clientX);
@@ -40,9 +40,9 @@ export function CustomCursor() {
 
     window.addEventListener("mousemove", onMove, { passive: true });
     return () => window.removeEventListener("mousemove", onMove);
-  }, [enabled, x, y]);
+  }, [mounted, enabled, x, y]);
 
-  if (!enabled) return null;
+  if (!mounted || !enabled) return null;
 
   return (
     <motion.div
