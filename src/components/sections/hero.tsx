@@ -1,5 +1,6 @@
 "use client";
 
+import { Spotlight } from "@/components/ui/spotlight";
 import { site } from "@/lib/content";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, Sparkles } from "lucide-react";
@@ -14,17 +15,9 @@ export function Hero() {
       className="relative flex min-h-[100dvh] flex-col items-center justify-center px-4 pb-24 pt-28 text-center sm:px-6"
     >
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-indigo-500/20 blur-3xl" />
-        <motion.div
-          className="absolute left-[12%] top-[30%] h-36 w-36 rounded-full border border-cyan-300/30"
-          animate={reduce ? undefined : { y: [0, -14, 0], rotate: [0, 8, 0] }}
-          transition={{ duration: 7.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute right-[14%] top-[62%] h-24 w-24 rounded-2xl border border-indigo-300/30"
-          animate={reduce ? undefined : { y: [0, 18, 0], rotate: [0, -12, 0] }}
-          transition={{ duration: 8.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        />
+        <Spotlight className="-top-40 -left-10 h-screen md:-left-32 md:-top-20" fill="white" />
+        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
+        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
       </div>
 
       <motion.div
