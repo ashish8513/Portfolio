@@ -9,17 +9,20 @@ export function Projects() {
   const ordered = [...featured, ...rest];
 
   return (
-    <section id="projects" className="relative z-10 scroll-mt-24 px-4 py-24 sm:px-6">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="projects"
+      className="relative z-10 scroll-mt-24 border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 py-24 sm:px-6"
+    >
+      <div className="mx-auto max-w-7xl">
         <MotionReveal>
           <SectionHeading
-            eyebrow="Selected work"
-            title="Projects"
-            subtitle="End-to-end builds where UX, APIs, and data come together — swap in your real case studies."
+            eyebrow="Portfolio"
+            title="Selected projects that shipped end-to-end"
+            subtitle="Dashboards, mobile apps, and APIs — replace placeholders with your real launches."
           />
         </MotionReveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {ordered.map((project) => (
             <MotionReveal key={project.title}>
               <ProjectCard project={project} />

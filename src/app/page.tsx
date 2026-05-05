@@ -4,6 +4,7 @@ import { Experience } from "@/components/sections/experience";
 import { Hero } from "@/components/sections/hero";
 import { Profiles } from "@/components/sections/profiles";
 import { Projects } from "@/components/sections/projects";
+import { SkillsShowcase } from "@/components/sections/skills-showcase";
 import { Signature } from "@/components/sections/signature";
 import { Testimonials } from "@/components/sections/testimonials";
 import { SiteFooter } from "@/components/site-footer";
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="relative z-10 flex flex-1 flex-col">
         <Hero />
         <About />
+        <SkillsShowcase />
         <Experience />
         <Signature />
         <Projects />

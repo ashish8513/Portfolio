@@ -1,28 +1,22 @@
 @import "tailwindcss";
 
-/* Dynamic portfolio theme */
+/* Fixed dark UI — Figma palette (#000000 base, #0000EE / #0055FE accents) */
 :root {
-  --bg-deep: #030712;
-  --bg-soft: #050b17;
-  --bg-elevated: #0b1220;
-  --text-main: #fafafa;
-  --accent-indigo: #6366f1;
-  --accent-cyan: #22d3ee;
-  --text-muted: #a1a1aa;
+  --bg-deep: #000000;
+  --bg-soft: #080808;
+  --bg-elevated: #131313;
+  --bg-card: #262626;
+  --text-main: #ffffff;
+  --text-muted: #999999;
+  --text-muted-dim: #808080;
+  --accent-primary: #0000ee;
+  --accent-hover: #0055fe;
+  --accent-indigo: var(--accent-primary);
+  --accent-purple: var(--accent-hover);
+  --accent-cyan: #3388ff;
   --border-glass: rgba(255, 255, 255, 0.08);
-  --glow-indigo: rgba(99, 102, 241, 0.26);
-  --glow-cyan: rgba(34, 211, 238, 0.2);
-}
-
-[data-theme="light"] {
-  --bg-deep: #f8fbff;
-  --bg-soft: #edf3ff;
-  --bg-elevated: #ffffff;
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --border-glass: rgba(15, 23, 42, 0.13);
-  --glow-indigo: rgba(99, 102, 241, 0.14);
-  --glow-cyan: rgba(34, 211, 238, 0.16);
+  --glow-indigo: rgba(0, 0, 238, 0.45);
+  --glow-cyan: rgba(0, 85, 254, 0.28);
 }
 
 @theme inline {
@@ -30,8 +24,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -44,18 +46,86 @@ body {
   background-color: var(--bg-deep);
   color: var(--text-main);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  transition:
-    background-color 260ms ease,
-    color 260ms ease;
 }
 
-/* Subtle grid + gradient orbs (no JS) */
+/* Subtle grid */
 .bg-mesh {
   background-color: var(--bg-deep);
   background-image:
-    linear-gradient(color-mix(in oklab, var(--text-main) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklab, var(--text-main) 8%, transparent) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(color-mix(in oklab, var(--text-main) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--text-main) 5%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.card-landin {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: color-mix(in oklab, var(--bg-card) 78%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.btn-primary-landin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-hover));
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow:
+    0 0 24px -4px rgba(0, 0, 238, 0.55),
+    0 0 48px -16px rgba(0, 85, 254, 0.35);
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-primary-landin:hover {
+  filter: brightness(1.08);
+}
+
+.btn-outline-landin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.btn-outline-landin:hover {
+  border-color: rgba(0, 0, 238, 0.45);
+  background: rgba(0, 0, 238, 0.08);
+}
+
+.btn-blue-glow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-hover));
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow:
+    0 0 28px -6px rgba(0, 0, 238, 0.65),
+    0 0 56px -18px rgba(0, 85, 254, 0.35);
+  transition: filter 0.2s ease;
+}
+
+.btn-blue-glow:hover {
+  filter: brightness(1.07);
 }
 
 .bg-orbs::before,
@@ -67,7 +137,7 @@ body {
   height: min(50vw, 420px);
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.45;
+  opacity: 0.38;
   pointer-events: none;
   z-index: 0;
 }
@@ -75,17 +145,17 @@ body {
 .bg-orbs::before {
   top: -10%;
   left: -10%;
-  background: var(--glow-cyan);
+  background: rgba(0, 85, 254, 0.22);
 }
 
 .bg-orbs::after {
   bottom: -10%;
   right: -10%;
-  background: var(--glow-indigo);
+  background: rgba(0, 0, 238, 0.28);
 }
 
 .glass-panel {
-  background: color-mix(in oklab, var(--bg-elevated) 74%, transparent);
+  background: color-mix(in oklab, var(--bg-elevated) 82%, transparent);
   border: 1px solid var(--border-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -94,22 +164,14 @@ body {
 .text-gradient {
   background: linear-gradient(
     135deg,
-    #bfdbfe 0%,
-    var(--accent-indigo) 45%,
-    var(--accent-cyan) 100%
+    #ffffff 0%,
+    #b4c6ff 38%,
+    var(--accent-hover) 72%,
+    var(--accent-primary) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-.theme-transition * {
-  transition:
-    background-color 260ms ease,
-    border-color 260ms ease,
-    color 220ms ease,
-    fill 220ms ease,
-    stroke 220ms ease;
 }
 
 @keyframes spotlight-in {
@@ -124,7 +186,7 @@ body {
 }
 
 .animate-spotlight {
-  animation: spotlight-in 0.85s ease-out forwards;
+  animation: spotlight-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -134,3 +196,4 @@ body {
     transform: translate(-50%, -40%) scale(1);
   }
 }
+

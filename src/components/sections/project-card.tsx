@@ -3,7 +3,7 @@
 import type { Project } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -50,8 +50,8 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0a0f1a]/90",
-        "shadow-[0_20px_50px_-28px_rgba(99,102,241,0.28)] transition-[border-color,box-shadow] hover:border-indigo-400/25 hover:shadow-[0_28px_60px_-24px_rgba(56,189,248,0.28)]",
+        "group flex flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0a]/95",
+        "shadow-[0_24px_60px_-30px_rgba(59,130,246,0.22)] transition-[border-color,box-shadow] hover:border-[var(--accent-indigo)]/35 hover:shadow-[0_32px_70px_-28px_rgba(168,85,247,0.2)]",
         className,
       )}
     >
@@ -64,9 +64,9 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           sizes="(max-width: 768px) 100vw, 33vw"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/90 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
         {project.featured ? (
-          <span className="absolute left-3 top-3 rounded-full bg-indigo-500/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white backdrop-blur">
+          <span className="absolute left-3 top-3 rounded-full bg-[var(--accent-indigo)]/95 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
             Featured
           </span>
         ) : null}
@@ -88,7 +88,19 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
             </span>
           ))}
         </div>
-        <div className="mt-auto flex flex-wrap gap-2 pt-1">
+        {(project.liveUrl ?? project.repoUrl) ? (
+          <Link
+            href={(project.liveUrl ?? project.repoUrl)!}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-[var(--accent-indigo)] transition group-hover:gap-1.5"
+          >
+            Learn more
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+          </Link>
+        ) : null}
+
+        <div className="mt-auto flex flex-wrap gap-2 pt-2">
           {project.repoUrl ? (
             <Link
               href={project.repoUrl}
@@ -105,7 +117,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-indigo-500 to-sky-500 px-3 text-xs font-semibold text-white hover:brightness-110"
+              className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-gradient-to-r from-[var(--accent-indigo)] to-[var(--accent-purple)] px-3 text-xs font-semibold text-white hover:brightness-110"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Live

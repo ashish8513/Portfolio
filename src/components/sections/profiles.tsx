@@ -20,8 +20,11 @@ function ProfileIcon({ type }: { type: (typeof profiles)[number]["icon"] }) {
 
 export function Profiles() {
   return (
-    <section id="profiles" className="relative z-10 scroll-mt-24 px-4 py-24 sm:px-6">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="profiles"
+      className="relative z-10 scroll-mt-24 border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 py-24 sm:px-6"
+    >
+      <div className="mx-auto max-w-7xl">
         <MotionReveal>
           <SectionHeading
             eyebrow="Presence"
@@ -38,9 +41,9 @@ export function Profiles() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-profile-card
-                className="glass-panel flex h-full flex-col rounded-2xl p-6 transition hover:border-indigo-400/30 hover:bg-white/[0.05]"
+                className="card-landin flex h-full flex-col rounded-2xl p-6 transition hover:border-[var(--accent-indigo)]/35 hover:bg-[color-mix(in_oklab,var(--bg-elevated)_95%,transparent)]"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/80 to-sky-500/80 shadow-lg shadow-indigo-500/20">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--accent-indigo)] to-[var(--accent-purple)] shadow-lg shadow-[var(--accent-indigo)]/25">
                   <ProfileIcon type={p.icon} />
                 </div>
                 <h3 className="mt-4 text-lg font-semibold text-white">{p.name}</h3>

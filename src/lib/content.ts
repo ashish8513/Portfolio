@@ -4,6 +4,9 @@
 
 export const site = {
   name: "Ashish Prabhakar",
+  /** Landin-style hero lines — edit anytime */
+  heroTitleLine1: "Premium engineering",
+  heroTitleLine2: "for ambitious products.",
   role: "Full Stack Engineer",
   roles: [
     "Full Stack Engineer",
@@ -20,6 +23,7 @@ export const site = {
 
 export const nav = [
   { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
   { label: "Work Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Coding Profiles", href: "#profiles" },
@@ -34,6 +38,8 @@ export type ExperienceItem = {
   description: string;
   /** Short label shown on timeline, e.g. company initial */
   badge?: string;
+  /** Landin-style pills under the card */
+  tags?: readonly string[];
 };
 
 export const experience: ExperienceItem[] = [
@@ -44,6 +50,7 @@ export const experience: ExperienceItem[] = [
     description:
       "Building MERN and React Native products end-to-end: APIs, dashboards, auth, and releases with clear documentation.",
     badge: "AP",
+    tags: ["End-to-end delivery", "APIs & dashboards", "Clear docs"],
   },
   {
     period: "2023 — 2024",
@@ -52,8 +59,32 @@ export const experience: ExperienceItem[] = [
     description:
       "Owned features across the stack, improved query performance, and collaborated on sprint planning and code review.",
     badge: "T",
+    tags: ["Feature ownership", "Query perf", "Sprint rituals"],
+  },
+  {
+    period: "2022 — 2023",
+    title: "Junior Developer",
+    company: "First Team / Internship",
+    description:
+      "Shipped UI slices, fixed bugs across the stack, and learned how production differs from tutorials.",
+    tags: ["Shipping slices", "Code review", "MVPs"],
   },
 ];
+
+/** Experience section — split headline (bright + muted line) like Framer / Landin */
+export const experienceIntro = {
+  eyebrow: "How we work",
+  titleBright: "Experience that compounds",
+  titleMuted: "over time.",
+  subtitle:
+    "Timeline on the left, detail cards beside it — a calm photo stays pinned on the right while you scroll.",
+} as const;
+
+/** Right-column sticky image in Experience section — swap for your own photo */
+export const experienceVisual = {
+  src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=960&q=85&auto=format&fit=crop",
+  alt: "Developer focused on building products",
+} as const;
 
 export const about = {
   intro: `I'm Ashish — a Full Stack developer who enjoys turning ambiguous problems into clear, shippable software. I care about performance, accessibility, and code that the next person (including future me) can actually maintain.`,

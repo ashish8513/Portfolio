@@ -9,12 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function SmoothScroll() {
   useEffect(() => {
+    document.documentElement.classList.add("lenis");
+    document.documentElement.classList.add("lenis-smooth");
+
     const lenis = new Lenis({
-      duration: 1.15,
-      wheelMultiplier: 0.9,
+      duration: 1.28,
+      lerp: 0.055,
+      wheelMultiplier: 0.85,
       touchMultiplier: 1.05,
-      lerp: 0.08,
       smoothWheel: true,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
     const update = (time: number) => {
@@ -28,6 +32,7 @@ export function SmoothScroll() {
     return () => {
       gsap.ticker.remove(update);
       lenis.destroy();
+      document.documentElement.classList.remove("lenis", "lenis-smooth");
     };
   }, []);
 

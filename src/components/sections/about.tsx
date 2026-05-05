@@ -2,11 +2,31 @@ import { about, site } from "@/lib/content";
 import { MotionReveal } from "@/components/motion-reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { AboutAccordion } from "@/components/sections/about-accordion";
-import * as Separator from "@radix-ui/react-separator";
+import Link from "next/link";
+import Image from "next/image";
+import { Check } from "lucide-react";
+
+function splitIntro(text: string) {
+  const sep = " — ";
+  const i = text.indexOf(sep);
+  if (i < 0) return { name: text, body: "" as string | null };
+  return {
+    name: text.slice(0, i),
+    body: text.slice(i + sep.length),
+  };
+}
+
+const ABOUT_IMAGE =
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=85&auto=format&fit=crop";
 
 export function About() {
+  const { name, body } = splitIntro(about.intro);
+
   return (
-    <section id="about" className="relative z-10 scroll-mt-24 px-4 py-24 sm:px-6">
+    <section
+      id="about"
+      className="relative z-10 scroll-mt-24 bg-[var(--bg-deep)] bg-mesh px-4 py-24 sm:px-6"
+    >
       <div className="mx-auto max-w-6xl">
         <MotionReveal>
           <SectionHeading
@@ -16,37 +36,112 @@ export function About() {
           />
         </MotionReveal>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-16">
-          <MotionReveal className="space-y-6">
-            <div className="glass-panel rounded-2xl p-6 sm:p-8">
-              <p className="text-sm leading-relaxed text-zinc-300 sm:text-base">
-                {about.intro}
-              </p>
-              <Separator.Root className="my-6 h-px w-full bg-white/10" />
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-indigo-200/90">
-                Core stack
-              </p>
-              <ul className="space-y-2 text-sm text-zinc-400">
-                {about.highlights.map((line) => (
-                  <li key={line} className="flex gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-br from-indigo-400 to-sky-400" />
-                    <span>{line}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-xs text-zinc-500">{site.location}</p>
+        <div className="mt-14 grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
+          <MotionReveal className="min-w-0 max-lg:w-full lg:self-start">
+            <div className="group relative aspect-[4/5] min-h-[280px] w-full overflow-hidden rounded-[22px] border border-white/[0.1] bg-[#050508] shadow-[0_32px_80px_-48px_rgba(0,82,255,0.45)] ring-1 ring-white/[0.04]">
+              <div
+                className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(135deg,rgba(0,82,255,0.14)_0%,transparent_42%,transparent_100%)] opacity-90"
+                aria-hidden
+              />
+              <Image
+                src={ABOUT_IMAGE}
+                alt="Developers collaborating"
+                fill
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority={false}
+              />
+              <div
+                className="pointer-events-none absolute inset-0 z-[2] bg-[linear-gradient(180deg,transparent_40%,rgba(0,0,0,0.5)_100%)]"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 z-[3] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                aria-hidden
+              />
             </div>
           </MotionReveal>
 
-          <MotionReveal delay={0.08} className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">
-              Learn from my experience
-            </h3>
-            <p className="text-sm text-zinc-500">
-              Lessons and mistakes that shaped how I build today.
-            </p>
-            <AboutAccordion />
-          </MotionReveal>
+          {/* Right: bio card + accordion card stacked (not merged) */}
+          <div className="flex min-w-0 flex-col gap-8">
+            <MotionReveal delay={0.06} className="flex w-full">
+            <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[22px] border border-white/[0.1] bg-[#0c0c12] p-7 shadow-[0_32px_90px_-50px_rgba(0,0,0,0.9)] ring-1 ring-[#0052ff]/15 sm:p-9">
+              {/* Depth: ambient glows + top edge */}
+              <div
+                className="pointer-events-none absolute -right-28 -top-28 h-56 w-56 rounded-full bg-[#0052ff]/25 blur-[80px]"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute -bottom-24 -left-20 h-48 w-48 rounded-full bg-[#0052ff]/12 blur-[70px]"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(165deg,rgba(255,255,255,0.04)_0%,transparent_38%)]"
+                aria-hidden
+              />
+
+              <div className="relative z-[1] flex flex-1 flex-col">
+                <p className="text-[15px] leading-[1.7] text-zinc-100 sm:text-base">
+                  <span className="font-semibold text-white">{name}</span>
+                  {body ? (
+                    <>
+                      <span className="font-normal text-zinc-400"> — </span>
+                      <span className="font-normal text-zinc-300">{body}</span>
+                    </>
+                  ) : null}
+                </p>
+
+                <div className="my-8 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent/0" aria-hidden />
+
+                <p className="mb-4 bg-gradient-to-r from-[#7cb4ff] to-[#0052ff] bg-clip-text text-[11px] font-bold uppercase tracking-[0.24em] text-transparent sm:text-xs">
+                  Core stack
+                </p>
+
+                <ul className="space-y-3.5">
+                  {about.highlights.map((line) => (
+                    <li
+                      key={line}
+                      className="flex gap-3.5 text-[15px] leading-snug text-zinc-200 sm:text-[15px]"
+                    >
+                      <span
+                        className="mt-0.5 flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[#2b8cff] to-[#0052ff] shadow-[0_0_22px_-4px_rgba(0,82,255,0.65)] ring-2 ring-[#0052ff]/25"
+                        aria-hidden
+                      >
+                        <Check className="h-3.5 w-3.5 text-white" strokeWidth={2.75} />
+                      </span>
+                      <span className="pt-0.5">{line}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-10 text-sm text-zinc-500">{site.location}</p>
+
+                <Link
+                  href="#contact"
+                  className="mt-5 flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#1a7cff] to-[#0052ff] px-5 py-4 text-sm font-bold text-white shadow-[0_16px_48px_-14px_rgba(0,82,255,0.65)] ring-1 ring-white/10 transition-[filter,transform,box-shadow] hover:brightness-110 hover:shadow-[0_20px_56px_-12px_rgba(0,82,255,0.55)] active:scale-[0.99]"
+                >
+                  Start a project
+                </Link>
+              </div>
+            </div>
+            </MotionReveal>
+
+            <MotionReveal delay={0.12} className="w-full">
+              <div className="w-full space-y-5">
+                <div>
+                  <h3 className="text-lg font-semibold text-white">Learn from my experience</h3>
+                  <p className="mt-2 text-sm text-zinc-500">
+                    Lessons and mistakes that shaped how I build today.
+                  </p>
+                </div>
+                <AboutAccordion />
+              </div>
+            </MotionReveal>
+          </div>
         </div>
       </div>
     </section>

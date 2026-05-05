@@ -1,103 +1,96 @@
 "use client";
 
+import { HeroVisual } from "@/components/landin/hero-visual";
 import { Spotlight } from "@/components/ui/spotlight";
 import { site } from "@/lib/content";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDownRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section
-      id="top"
-      className="relative flex min-h-[100dvh] flex-col items-center justify-center px-4 pb-24 pt-28 text-center sm:px-6"
-    >
+    <section id="top" className="relative overflow-hidden pb-0 pt-24 md:pt-28 lg:pt-32">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <Spotlight className="-top-40 -left-10 h-screen md:-left-32 md:-top-20" fill="white" />
-        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
-        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="blue" />
+        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="#0000EE" />
+        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="#0055FE" />
       </div>
 
-      <motion.div
-        className="relative z-10 flex max-w-3xl flex-col items-center gap-6"
-        initial={reduce ? false : { opacity: 0, y: 20 }}
-        animate={reduce ? undefined : { opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-glass)] bg-[color-mix(in_oklab,var(--bg-elevated)_66%,transparent)] px-3 py-1 text-xs font-medium text-[var(--text-muted)] backdrop-blur-md">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          {site.role}
-        </span>
-
-        <h1 className="text-balance text-4xl font-semibold tracking-tight text-[var(--text-main)] sm:text-5xl md:text-6xl">
-          Hi, I&apos;m{" "}
-          <span className="text-gradient drop-shadow-[0_0_28px_rgba(99,102,241,0.35)]">
-            {site.name}
-          </span>
-        </h1>
-
-        <motion.p
-          className="max-w-xl text-pretty text-lg text-[var(--text-muted)] sm:text-xl"
-          initial={reduce ? false : { opacity: 0 }}
-          animate={reduce ? undefined : { opacity: 1 }}
-          transition={{ delay: 0.15, duration: 0.5 }}
-        >
-          {site.heroSubtitle}
-        </motion.p>
-
-        <p className="max-w-lg text-sm text-[var(--text-muted)]/90 sm:text-base">{site.tagline}</p>
-
-        <motion.div
-          className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
-          initial={reduce ? false : { opacity: 0, y: 10 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.5 }}
-        >
-          <Link
-            href="#projects"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-[var(--border-glass)] bg-[color-mix(in_oklab,var(--bg-elevated)_66%,transparent)] px-6 text-sm font-medium text-[var(--text-main)] transition hover:border-indigo-300/40 hover:bg-white/[0.07]"
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-center gap-10 pb-14 sm:gap-12 sm:pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 lg:pb-24">
+          <motion.div
+            className="mx-auto w-full max-w-[22rem] text-left sm:max-w-lg lg:mx-0 lg:max-w-none"
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            animate={reduce ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            View Projects
-            <ArrowDownRight className="h-4 w-4 opacity-80" aria-hidden />
-          </Link>
-          <Link
-            href="#contact"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-500 px-6 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:brightness-110"
-          >
-            <Sparkles className="h-4 w-4" aria-hidden />
-            Hire Me
-          </Link>
-        </motion.div>
-        <motion.div
-          className="glass-panel mt-3 grid w-full max-w-2xl grid-cols-3 gap-2 rounded-2xl p-2 text-left sm:gap-3 sm:p-3"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={reduce ? undefined : { opacity: 1, y: 0 }}
-          transition={{ delay: 0.34, duration: 0.55 }}
-        >
-          {[
-            { label: "Build Velocity", value: "2x" },
-            { label: "Perf Score", value: "95+" },
-            { label: "Deploy Cadence", value: "Weekly" },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="rounded-xl border border-[var(--border-glass)] bg-[color-mix(in_oklab,var(--bg-elevated)_72%,transparent)] px-3 py-2"
-            >
-              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--text-muted)]">
-                {item.label}
-              </p>
-              <p className="mt-1 text-lg font-semibold text-[var(--text-main)] sm:text-xl">
-                {item.value}
-              </p>
+            <div className="mb-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/80 p-1 pr-3 backdrop-blur-md sm:pr-4 md:mb-8">
+              <span className="rounded-full bg-[var(--accent-indigo)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
+                Open
+              </span>
+              <span className="ml-3 text-xs font-medium text-zinc-400">{site.role} · {site.location}</span>
             </div>
-          ))}
-        </motion.div>
-      </motion.div>
+
+            <h1 className="text-balance font-semibold tracking-tight text-white">
+              <span className="block text-[2rem] leading-[1.12] sm:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
+                {site.heroTitleLine1}
+              </span>
+              <span className="mt-1 block text-[2rem] leading-[1.12] sm:text-5xl lg:mt-2 lg:text-[3.25rem] lg:leading-[1.08]">
+                <span className="text-gradient">{site.heroTitleLine2}</span>
+              </span>
+            </h1>
+
+            <p className="mt-5 max-w-[38ch] text-pretty text-[0.9375rem] leading-relaxed text-zinc-400 sm:text-base lg:max-w-xl lg:text-lg">
+              {site.heroSubtitle}{" "}
+              <span className="text-zinc-500">{site.tagline}</span>
+            </p>
+
+            <motion.div
+              className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+              initial={reduce ? false : { opacity: 0, y: 14 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={{ delay: 0.12, duration: 0.55 }}
+            >
+              <Link href="#contact" className="btn-primary-landin w-auto min-w-0 shrink-0 px-7">
+                Connect with me
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link href="#about" className="btn-outline-landin w-auto min-w-0 shrink-0 px-7">
+                About my work
+              </Link>
+            </motion.div>
+
+            <motion.div
+              className="mt-10 grid w-full max-w-md grid-cols-3 gap-1.5 rounded-2xl border border-white/10 bg-[#0a0a0a]/60 p-2 backdrop-blur-md sm:gap-2 lg:max-w-lg"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.55 }}
+            >
+              {[
+                { label: "Ship cadence", value: "Weekly" },
+                { label: "Focus", value: "MERN" },
+                { label: "Mobile", value: "RN" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5 text-left">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500">{item.label}</p>
+                  <p className="mt-1 text-lg font-semibold tabular-nums text-white">{item.value}</p>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="relative mx-auto mt-2 flex w-full max-w-[min(100%,18rem)] justify-center sm:max-w-xs lg:mx-0 lg:mt-0 lg:max-w-none lg:justify-end"
+            initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+            animate={reduce ? undefined : { opacity: 1, scale: 1 }}
+            transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <HeroVisual />
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
