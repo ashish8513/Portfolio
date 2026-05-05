@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { CustomCursor } from "@/components/custom-cursor";
+import { SmoothScroll } from "@/components/effects/smooth-scroll";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/content";
@@ -61,10 +63,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#030712] text-zinc-50">
-        <CustomCursor />
-        <div className="bg-orbs bg-mesh min-h-full flex flex-col">{children}</div>
+      <body className="theme-transition min-h-full flex flex-col bg-[var(--bg-deep)] text-[var(--text-main)]">
+        <ThemeProvider>
+          <SmoothScroll />
+          <CustomCursor />
+          <div className="bg-orbs bg-mesh min-h-full flex flex-col">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );

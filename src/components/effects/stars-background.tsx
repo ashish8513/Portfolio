@@ -4,11 +4,30 @@ import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import * as React from "react";
 
+function hashString(value: string) {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash >>> 0;
+}
+
+function createSeededRandom(seed: number) {
+  return () => {
+    let t = (seed += 0x6d2b79f5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 function generateStars(count: number, starColor: string) {
+  const random = createSeededRandom(hashString(`${count}-${starColor}`));
   const shadows: string[] = [];
   for (let i = 0; i < count; i += 1) {
-    const x = Math.floor(Math.random() * 3000) - 1500;
-    const y = Math.floor(Math.random() * 3000) - 1500;
+    const x = Math.floor(random() * 3000) - 1500;
+    const y = Math.floor(random() * 3000) - 1500;
     shadows.push(`${x}px ${y}px ${starColor}`);
   }
   return shadows.join(", ");
@@ -76,9 +95,9 @@ export function StarsBackground({ children, className }: StarsBackgroundProps) {
       onMouseMove={handleMouseMove}
     >
       <motion.div style={{ x: springX, y: springY }} className="absolute inset-0">
-        <StarLayer count={700} size={1} duration={80} color="#cbd5e1" />
-        <StarLayer count={250} size={1.5} duration={120} color="#a5b4fc" />
-        <StarLayer count={120} size={2.2} duration={170} color="#67e8f9" />
+        <StarLayer count={700} size={2.2} duration={80} color="#cbd5e1" />
+        <StarLayer count={250} size={3} duration={120} color="#a5b4fc" />
+        <StarLayer count={120} size={3.8} duration={170} color="#67e8f9" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
       <div className="relative z-10">{children}</div>

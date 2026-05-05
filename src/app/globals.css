@@ -1,15 +1,28 @@
 @import "tailwindcss";
 
-/* Dark-first portfolio theme */
+/* Dynamic portfolio theme */
 :root {
   --bg-deep: #030712;
+  --bg-soft: #050b17;
   --bg-elevated: #0b1220;
+  --text-main: #fafafa;
   --accent-indigo: #6366f1;
   --accent-cyan: #22d3ee;
   --text-muted: #a1a1aa;
   --border-glass: rgba(255, 255, 255, 0.08);
   --glow-indigo: rgba(99, 102, 241, 0.26);
   --glow-cyan: rgba(34, 211, 238, 0.2);
+}
+
+[data-theme="light"] {
+  --bg-deep: #f8fbff;
+  --bg-soft: #edf3ff;
+  --bg-elevated: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-glass: rgba(15, 23, 42, 0.13);
+  --glow-indigo: rgba(99, 102, 241, 0.14);
+  --glow-cyan: rgba(34, 211, 238, 0.16);
 }
 
 @theme inline {
@@ -29,16 +42,19 @@ html {
 
 body {
   background-color: var(--bg-deep);
-  color: #fafafa;
+  color: var(--text-main);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
+  transition:
+    background-color 260ms ease,
+    color 260ms ease;
 }
 
 /* Subtle grid + gradient orbs (no JS) */
 .bg-mesh {
   background-color: var(--bg-deep);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(color-mix(in oklab, var(--text-main) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--text-main) 8%, transparent) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -69,7 +85,7 @@ body {
 }
 
 .glass-panel {
-  background: rgba(9, 16, 28, 0.55);
+  background: color-mix(in oklab, var(--bg-elevated) 74%, transparent);
   border: 1px solid var(--border-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -85,4 +101,13 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.theme-transition * {
+  transition:
+    background-color 260ms ease,
+    border-color 260ms ease,
+    color 220ms ease,
+    fill 220ms ease,
+    stroke 220ms ease;
 }
