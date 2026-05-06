@@ -31,6 +31,34 @@ const floatBadges: FloatBadge[] = [
   { text: "React Native", bottom: "22%", left: "-6%", delay: 0.35 },
 ];
 
+function FlowChecks() {
+  return (
+    <svg
+      viewBox="0 0 54 118"
+      fill="none"
+      className="h-[92px] w-[42px] shrink-0"
+      aria-hidden
+    >
+      <line x1="27" y1="17" x2="27" y2="100" stroke="#0D2557" strokeWidth="2" />
+      {[17, 58, 99].map((y) => (
+        <g key={y}>
+          <circle cx="27" cy={y} r="13" fill="#0055FE" />
+          <path
+            d={`M22 ${y}l3 3 7-7`}
+            stroke="#EAF1FF"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      ))}
+      <line x1="41" y1="17" x2="53" y2="17" stroke="#0D2557" strokeWidth="2" />
+      <line x1="41" y1="58" x2="53" y2="58" stroke="#0D2557" strokeWidth="2" />
+      <line x1="41" y1="99" x2="53" y2="99" stroke="#0D2557" strokeWidth="2" />
+    </svg>
+  );
+}
+
 export function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-[17.5rem] sm:max-w-xs lg:max-w-[440px] lg:translate-x-4 xl:max-w-none">
@@ -131,50 +159,57 @@ export function HeroVisual() {
             </div>
 
             {/* MERN pipeline */}
-            <div className="shrink-0 space-y-2">
-              <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-zinc-600 sm:text-[10px]">
-                Stack flow
-              </p>
-              <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
-                {stack.map(({ label, Icon }, i) => (
-                  <motion.div
-                    key={label}
-                    className="flex items-center gap-1"
-                    initial={{ opacity: 0, x: -6 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: 0.2 + i * 0.06,
-                      duration: 0.4,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                  >
-                    {i > 0 ? (
-                      <ArrowRight className="h-3 w-3 shrink-0 text-zinc-600" aria-hidden />
-                    ) : null}
-                    <span className="inline-flex items-center gap-1 rounded-lg border border-white/[0.08] bg-white/[0.04] px-1.5 py-1 text-[9px] font-medium text-zinc-200 shadow-sm sm:gap-1.5 sm:px-2 sm:text-[10px]">
-                      <Icon className="h-3 w-3 text-[var(--accent-hover)]" aria-hidden />
-                      {label}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <motion.div
-                className="flex items-center gap-2 rounded-xl border border-white/[0.07] bg-gradient-to-r from-[var(--accent-primary)]/12 to-transparent px-2 py-2 sm:px-3"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.55, duration: 0.45 }}
-              >
-                <Smartphone className="h-4 w-4 shrink-0 text-[var(--accent-hover)]" aria-hidden />
-                <div className="min-w-0">
-                  <p className="truncate text-[10px] font-semibold text-white sm:text-[11px]">
-                    Mobile layer
-                  </p>
-                  <p className="truncate text-[9px] text-zinc-500 sm:text-[10px]">
-                    React Native · same patterns, native shells
-                  </p>
+            <div className="shrink-0">
+              <div className="flex items-start gap-2.5 sm:gap-3">
+                <div className="pt-1">
+                  <FlowChecks />
                 </div>
-              </motion.div>
+                <div className="min-w-0 space-y-2">
+                  <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-zinc-600 sm:text-[10px]">
+                    Stack flow
+                  </p>
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
+                    {stack.map(({ label, Icon }, i) => (
+                      <motion.div
+                        key={label}
+                        className="flex items-center gap-1"
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: 0.2 + i * 0.06,
+                          duration: 0.4,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      >
+                        {i > 0 ? (
+                          <ArrowRight className="h-3 w-3 shrink-0 text-zinc-600" aria-hidden />
+                        ) : null}
+                        <span className="inline-flex items-center gap-1 rounded-lg border border-white/[0.08] bg-white/[0.04] px-1.5 py-1 text-[9px] font-medium text-zinc-200 shadow-sm sm:gap-1.5 sm:px-2 sm:text-[10px]">
+                          <Icon className="h-3 w-3 text-[var(--accent-hover)]" aria-hidden />
+                          {label}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <motion.div
+                    className="flex items-center gap-2 rounded-xl border border-white/[0.07] bg-gradient-to-r from-[var(--accent-primary)]/12 to-transparent px-2 py-2 sm:px-3"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.55, duration: 0.45 }}
+                  >
+                    <Smartphone className="h-4 w-4 shrink-0 text-[var(--accent-hover)]" aria-hidden />
+                    <div className="min-w-0">
+                      <p className="truncate text-[10px] font-semibold text-white sm:text-[11px]">
+                        Mobile layer
+                      </p>
+                      <p className="truncate text-[9px] text-zinc-500 sm:text-[10px]">
+                        React Native · same patterns, native shells
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </div>
 

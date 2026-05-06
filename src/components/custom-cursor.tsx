@@ -6,11 +6,7 @@ import { useEffect, useState } from "react";
 
 export function CustomCursor() {
   const [hovering, setHovering] = useState(false);
-  const [enabled, setEnabled] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia("(pointer: fine)").matches
-      : false,
-  );
+  const [enabled, setEnabled] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const smoothX = useSpring(x, { stiffness: 500, damping: 35, mass: 0.2 });
@@ -19,6 +15,7 @@ export function CustomCursor() {
   useEffect(() => {
     const mq = window.matchMedia("(pointer: fine)");
     const sync = () => setEnabled(mq.matches);
+    sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
   }, []);
