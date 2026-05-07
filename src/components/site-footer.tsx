@@ -38,7 +38,21 @@ export function SiteFooter() {
                 {site.email}
               </a>
             </li>
+            <li>
+              <a href={`tel:${site.phoneTel}`} className="transition hover:text-white">
+                {site.phoneDisplay}
+              </a>
+            </li>
             <li>{site.location}</li>
+            <li>
+              <a
+                href={site.resume.href}
+                download={site.resume.downloadFilename}
+                className="transition hover:text-white"
+              >
+                Download résumé (PDF)
+              </a>
+            </li>
           </ul>
         </div>
 

@@ -66,7 +66,7 @@ export default function AboutPage() {
                 experiences. We design with clarity, build with precision, and scale with confidence.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <Link href="#contact" className="btn-blue-glow">
+                <Link href="#contact" className="btn-blue-glow inline-flex">
                   Connect With Us
                 </Link>
                 <Link href="#story" className="btn-outline-landin">
@@ -99,7 +99,7 @@ export default function AboutPage() {
                   We move closely with your team, from discovery to launch and ongoing optimization.
                 </p>
               </div>
-              <Link href="#contact" className="btn-blue-glow">
+              <Link href="#contact" className="btn-blue-glow inline-flex">
                 Book an Appointment
               </Link>
             </div>

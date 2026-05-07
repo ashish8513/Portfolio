@@ -3,7 +3,7 @@
 import { site, nav } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -38,7 +38,7 @@ export function SiteHeader() {
             : "border-transparent bg-transparent",
         )}
       >
-        <div className="mx-auto flex max-w-7xl items-center gap-2 px-5 py-4 sm:gap-4 sm:px-8 lg:px-10">
+        <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3.5 sm:gap-4 sm:px-8 sm:py-4 lg:px-10">
           <Link
             href="#top"
             className="flex shrink-0 items-center gap-2.5 font-semibold tracking-tight text-white"
@@ -62,10 +62,19 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-2 lg:gap-2">
+            <a
+              href={site.resume.href}
+              download={site.resume.downloadFilename}
+              className="hidden items-center gap-1.5 rounded-lg border border-white/10 bg-[#0a0a0a]/80 px-3 py-2 text-[11px] font-semibold text-zinc-300 transition hover:border-[var(--accent-primary)]/35 hover:text-white lg:inline-flex sm:text-sm"
+              title="Download résumé"
+            >
+              <Download className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden />
+              Résumé
+            </a>
             <Link
               href="#contact"
-              className="btn-blue-glow inline-flex shrink-0 px-3 py-2 text-[11px] font-semibold sm:px-4 sm:text-sm"
+              className="btn-blue-glow hidden shrink-0 px-3 py-2 text-[11px] font-semibold lg:inline-flex sm:px-4 sm:text-sm"
             >
               Get in touch
             </Link>
@@ -154,13 +163,15 @@ export function SiteHeader() {
               </nav>
 
               <div className="relative shrink-0 border-t border-white/[0.08] px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
-                <Link
-                  href="#contact"
-                  className="btn-blue-glow flex w-full justify-center rounded-xl py-3.5 text-[0.9375rem] font-semibold shadow-[0_0_36px_-8px_rgba(0,0,238,0.65)]"
+                <a
+                  href={site.resume.href}
+                  download={site.resume.downloadFilename}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.05] py-3.5 text-[0.9375rem] font-semibold text-white backdrop-blur-sm transition hover:bg-white/[0.08]"
                   onClick={() => setOpen(false)}
                 >
-                  Get in touch
-                </Link>
+                  <Download className="h-4 w-4" aria-hidden />
+                  Download résumé
+                </a>
               </div>
             </motion.div>
           </>

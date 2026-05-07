@@ -26,11 +26,13 @@ export function Hero() {
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="mb-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/80 p-1 pr-3 backdrop-blur-md sm:pr-4 md:mb-8">
-              <span className="rounded-full bg-[var(--accent-indigo)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">
+            <div className="mb-6 w-full max-w-md rounded-2xl border border-white/10 bg-[#0a0a0a]/80 p-3 backdrop-blur-md sm:max-w-lg sm:inline-flex sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:rounded-full sm:p-1 sm:pr-4 md:mb-8">
+              <span className="rounded-full bg-[var(--accent-indigo)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white sm:shrink-0">
                 Open
               </span>
-              <span className="ml-3 text-xs font-medium text-zinc-400">{site.role} · {site.location}</span>
+              <span className="mt-2 block text-xs font-medium leading-snug text-zinc-400 sm:mt-0 sm:ml-3 sm:inline sm:max-w-[min(100%,20rem)] sm:leading-normal">
+                {site.role} · MCA, Chandigarh University
+              </span>
             </div>
 
             <h1 className="text-balance font-semibold tracking-tight text-white">
@@ -48,16 +50,22 @@ export function Hero() {
             </p>
 
             <motion.div
-              className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+              className="mt-8 grid w-full max-w-lg grid-cols-1 gap-3 sm:max-w-xl sm:grid-cols-2 sm:gap-3 lg:max-w-none"
               initial={reduce ? false : { opacity: 0, y: 14 }}
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={{ delay: 0.12, duration: 0.55 }}
             >
-              <Link href="#contact" className="btn-primary-landin w-auto min-w-0 shrink-0 px-7">
+              <Link
+                href="#contact"
+                className="btn-primary-landin min-h-[44px] w-full justify-center px-5 text-[0.8125rem] sm:min-h-0 sm:px-7 sm:text-[0.875rem]"
+              >
                 Connect with me
-                <ArrowRight className="h-4 w-4" aria-hidden />
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
               </Link>
-              <Link href="#about" className="btn-outline-landin w-auto min-w-0 shrink-0 px-7">
+              <Link
+                href="#about"
+                className="btn-outline-landin min-h-[44px] w-full justify-center px-5 text-[0.8125rem] sm:min-h-0 sm:px-7 sm:text-[0.875rem]"
+              >
                 About my work
               </Link>
             </motion.div>
@@ -69,9 +77,9 @@ export function Hero() {
               transition={{ delay: 0.2, duration: 0.55 }}
             >
               {[
-                { label: "Ship cadence", value: "Weekly" },
-                { label: "Focus", value: "MERN" },
-                { label: "Mobile", value: "RN" },
+                { label: "Experience", value: "1.5+ yrs" },
+                { label: "Focus", value: "AI + MERN" },
+                { label: "Open for", value: "MNC roles" },
               ].map((item) => (
                 <div key={item.label} className="rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5 text-left">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-500">{item.label}</p>

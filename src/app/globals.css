@@ -109,7 +109,7 @@ body {
 }
 
 .btn-blue-glow {
-  display: inline-flex;
+  /* display via Tailwind (e.g. inline-flex / hidden lg:inline-flex) — avoids overriding utilities */
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;

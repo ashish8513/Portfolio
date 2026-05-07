@@ -4,8 +4,8 @@ import { submitContact } from "@/app/actions/contact";
 import { MotionReveal } from "@/components/motion-reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { Spotlight } from "@/components/ui/spotlight";
-import { site } from "@/lib/content";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { profiles, site } from "@/lib/content";
+import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -80,7 +80,7 @@ export function Contact() {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
-                  href="https://github.com"
+                  href={profiles.find((p) => p.icon === "github")!.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-200 transition hover:border-[var(--accent-indigo)]/35 hover:bg-white/[0.07]"
@@ -89,7 +89,7 @@ export function Contact() {
                   GitHub
                 </Link>
                 <Link
-                  href="https://linkedin.com"
+                  href={profiles.find((p) => p.icon === "linkedin")!.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-200 transition hover:border-[var(--accent-indigo)]/35 hover:bg-white/[0.07]"
@@ -104,6 +104,20 @@ export function Contact() {
                   <Mail className="h-4 w-4" />
                   Email
                 </Link>
+                <a
+                  href={`tel:${site.phoneTel}`}
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-200 transition hover:border-[var(--accent-indigo)]/35 hover:bg-white/[0.07]"
+                >
+                  <Phone className="h-4 w-4" />
+                  {site.phoneDisplay}
+                </a>
+                <a
+                  href={site.resume.href}
+                  download={site.resume.downloadFilename}
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-zinc-200 transition hover:border-[var(--accent-indigo)]/35 hover:bg-white/[0.07]"
+                >
+                  Résumé PDF
+                </a>
               </div>
             </div>
           </MotionReveal>

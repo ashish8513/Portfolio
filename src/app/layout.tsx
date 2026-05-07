@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 const title = `${site.name} — ${site.role}`;
-const description = `${site.tagline} MERN stack, React Native, Node.js, MySQL & MongoDB.`;
+const description = `${site.tagline} React, Next.js, Node.js, MongoDB, PostgreSQL, Socket.io, Docker & AWS.`;
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -29,13 +29,14 @@ export const metadata: Metadata = {
   },
   description,
   keywords: [
-    "Full Stack Developer",
+    "Full Stack Engineer",
     "MERN",
-    "React Native",
     "Next.js",
     "Node.js",
     "MongoDB",
-    "MySQL",
+    "PostgreSQL",
+    "Socket.io",
+    "AWS",
     site.name,
   ],
   authors: [{ name: site.name }],

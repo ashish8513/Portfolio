@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Braces,
+  Cloud,
   Database,
   Layers,
   Server,
-  Smartphone,
 } from "lucide-react";
 
 const stack = [
@@ -27,8 +27,8 @@ type FloatBadge = {
 };
 
 const floatBadges: FloatBadge[] = [
-  { text: "REST · GraphQL", top: "8%", right: "-4%", delay: 0.15 },
-  { text: "React Native", bottom: "22%", left: "-6%", delay: 0.35 },
+  { text: "JWT · RBAC", top: "8%", right: "-4%", delay: 0.15 },
+  { text: "Socket.io · AWS", bottom: "22%", left: "-6%", delay: 0.35 },
 ];
 
 function FlowChecks() {
@@ -153,7 +153,7 @@ export function HeroVisual() {
                   <span className="text-zinc-500">{"}"}</span>
                 </p>
                 <p className="mt-2 border-l-2 border-[var(--accent-primary)]/40 pl-2 text-[8px] text-zinc-600 sm:text-[9px]">
-                  Ship APIs, dashboards, and mobile from one stack.
+                  REST APIs, auth, and real-time layers — production-ready.
                 </p>
               </div>
             </div>
@@ -198,13 +198,13 @@ export function HeroVisual() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.55, duration: 0.45 }}
                   >
-                    <Smartphone className="h-4 w-4 shrink-0 text-[var(--accent-hover)]" aria-hidden />
+                    <Cloud className="h-4 w-4 shrink-0 text-[var(--accent-hover)]" aria-hidden />
                     <div className="min-w-0">
                       <p className="truncate text-[10px] font-semibold text-white sm:text-[11px]">
-                        Mobile layer
+                        Deploy & CI/CD
                       </p>
                       <p className="truncate text-[9px] text-zinc-500 sm:text-[10px]">
-                        React Native · same patterns, native shells
+                        Docker · AWS EC2 · GitHub Actions
                       </p>
                     </div>
                   </motion.div>
