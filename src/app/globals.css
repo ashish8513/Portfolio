@@ -197,3 +197,29 @@ body {
   }
 }
 
+/* Skip link — visible on keyboard focus */
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  padding: 0.625rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--accent-primary);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-180%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+}
+

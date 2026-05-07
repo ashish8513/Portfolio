@@ -1,4 +1,4 @@
-import { nav, site } from "@/lib/content";
+import { nav, portfolioBuiltWith, profiles, site } from "@/lib/content";
 import Link from "next/link";
 
 export function SiteFooter() {
@@ -59,17 +59,43 @@ export function SiteFooter() {
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">Availability</p>
           <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-            Open to full-time, contract, and freelance engagements. Prefer remote-first teams with strong product
-            culture.
+            Open to full-time roles at product-led teams and MNCs. Remote-first preferred; comfortable with India-friendly
+            overlap hours and clear async communication.
+          </p>
+          <p className="mt-3 text-xs leading-relaxed text-zinc-600">
+            Also interested in well-scoped contract work when it fits the stack.
           </p>
         </div>
       </div>
 
-      <div className="mx-auto mt-14 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 text-xs text-zinc-600 sm:flex-row">
-        <p>
-          © {year} {site.name}. All rights reserved.
-        </p>
-        <p className="text-center sm:text-right">Built with Next.js & Tailwind CSS.</p>
+      <div className="mx-auto mt-14 max-w-7xl border-t border-white/[0.06] pt-8">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-600">This site</p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {portfolioBuiltWith.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-1 font-mono text-[10px] font-medium text-zinc-500 sm:text-[11px]"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 text-xs text-zinc-600 sm:flex-row">
+          <p>
+            © {year} {site.name}. All rights reserved.
+          </p>
+          <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center sm:justify-end">
+            <span className="text-zinc-500">Engineered as a production Next.js app.</span>
+            <a
+              href={profiles.find((p) => p.icon === "github")?.href ?? "https://github.com"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 underline-offset-4 transition hover:text-white hover:underline"
+            >
+              GitHub →
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

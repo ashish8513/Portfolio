@@ -2,7 +2,7 @@
 
 import { HeroVisual } from "@/components/landin/hero-visual";
 import { Spotlight } from "@/components/ui/spotlight";
-import { site } from "@/lib/content";
+import { heroStackPills, site } from "@/lib/content";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -48,6 +48,20 @@ export function Hero() {
               {site.heroSubtitle}{" "}
               <span className="text-zinc-500">{site.tagline}</span>
             </p>
+
+            <div
+              className="mt-4 flex max-w-xl flex-wrap gap-2"
+              aria-label="Primary technologies"
+            >
+              {heroStackPills.map((pill) => (
+                <span
+                  key={pill}
+                  className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-zinc-400 sm:text-[11px]"
+                >
+                  {pill}
+                </span>
+              ))}
+            </div>
 
             <motion.div
               className="mt-8 grid w-full max-w-lg grid-cols-1 gap-3 sm:max-w-xl sm:grid-cols-2 sm:gap-3 lg:max-w-none"

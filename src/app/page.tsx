@@ -14,7 +14,11 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="relative z-10 flex flex-1 flex-col">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="relative z-10 flex flex-1 flex-col outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-primary)]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-deep)]"
+      >
         <Hero />
         <About />
         <SkillsShowcase />

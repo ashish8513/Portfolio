@@ -28,6 +28,30 @@ export const site = {
   },
 } as const;
 
+/** Set `NEXT_PUBLIC_SITE_URL` in prod (e.g. https://yoursite.vercel.app) — used for SEO & JSON-LD */
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
+/** Hero — quick scan for recruiters / engineers */
+export const heroStackPills = [
+  "TypeScript",
+  "React",
+  "Node.js",
+  "PostgreSQL",
+  "REST · JWT · RBAC",
+  "AWS · Docker · CI/CD",
+] as const;
+
+/** Footer — stack used to build this portfolio (shows engineering taste) */
+export const portfolioBuiltWith = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Framer Motion",
+  "GSAP",
+] as const;
+
 export const nav = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
