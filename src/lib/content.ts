@@ -32,8 +32,12 @@ export const site = {
 export const githubUsername = "ashish8513" as const;
 
 /** Set `NEXT_PUBLIC_SITE_URL` in prod (e.g. https://your-domain.com) — used for SEO & JSON-LD */
-export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const DEFAULT_SITE_URL = "http://localhost:3000";
+
+export const siteUrl = (() => {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  return raw || DEFAULT_SITE_URL;
+})();
 
 /** Hero — quick scan for recruiters / engineers */
 export const heroStackPills = [
