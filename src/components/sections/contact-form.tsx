@@ -22,7 +22,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-[var(--accent-indigo)] to-[var(--accent-purple)] text-sm font-semibold text-white shadow-[0_12px_36px_-12px_rgba(59,130,246,0.45)] transition hover:brightness-110 disabled:opacity-60"
+      className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-hover)] text-sm font-semibold text-white shadow-[0_12px_36px_-12px_rgba(var(--accent-primary-rgb),0.45)] transition hover:brightness-110 disabled:opacity-60"
     >
       {pending ? "Sending…" : "Send message"}
     </button>
@@ -30,7 +30,7 @@ function SubmitButton() {
 }
 
 const inputCls =
-  "mt-1.5 w-full rounded-xl border border-white/10 bg-[var(--bg-elevated)] px-3 py-2.5 text-sm text-[var(--text-main)] outline-none transition focus:border-[var(--accent-indigo)]/45 focus:ring-2 focus:ring-[var(--accent-indigo)]/25";
+  "mt-1.5 w-full rounded-xl border border-white/10 bg-[var(--bg-elevated)] px-3 py-2.5 text-sm text-[var(--text-main)] outline-none transition focus:border-[var(--accent-primary)]/45 focus:ring-2 focus:ring-[var(--accent-primary)]/25";
 
 export function ContactForm() {
   const [state, action] = useActionState(formAction, null);

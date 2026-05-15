@@ -55,7 +55,7 @@ export default function AboutPage() {
       <main className="relative z-10 flex flex-1 flex-col pt-24">
         <section className="mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 lg:px-10">
           <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#050505] px-6 py-14 text-center sm:px-10">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(76,129,227,0.3),transparent_55%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(var(--accent-primary-rgb), 0.3),transparent_55%)]" />
             <div className="relative">
               <SectionTag text="Dig Deep About Us" />
               <h1 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -80,7 +80,7 @@ export default function AboutPage() {
         <section id="story" className="mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 lg:px-10">
           <div className="grid gap-10 rounded-3xl border border-white/[0.06] bg-[#040404] p-6 md:grid-cols-2 md:p-10">
             <div className="relative min-h-[280px] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#020202]">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_70%,rgba(76,129,227,0.22),transparent_55%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_40%_70%,rgba(var(--accent-primary-rgb), 0.22),transparent_55%)]" />
             </div>
             <div className="space-y-5">
               <SectionTag text="About Landin" />
@@ -122,8 +122,8 @@ export default function AboutPage() {
                 key={member.name}
                 className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070707]"
               >
-                <div className="h-64 bg-[radial-gradient(circle_at_50%_20%,rgba(76,129,227,0.22),transparent_40%),linear-gradient(180deg,#171717,#0a0a0a)]" />
-                <div className="border-t border-white/[0.08] bg-[linear-gradient(180deg,rgba(76,129,227,0.08),transparent)] px-4 py-3">
+                <div className="h-64 bg-[radial-gradient(circle_at_50%_20%,rgba(var(--accent-primary-rgb), 0.22),transparent_40%),linear-gradient(180deg,#171717,#0a0a0a)]" />
+                <div className="border-t border-white/[0.08] bg-[linear-gradient(180deg,rgba(var(--accent-primary-rgb), 0.08),transparent)] px-4 py-3">
                   <p className="font-semibold text-white">{member.name}</p>
                   <p className="text-sm text-zinc-400">{member.role}</p>
                 </div>
@@ -147,7 +147,7 @@ export default function AboutPage() {
               {awards.map((award) => (
                 <article
                   key={`${award.org}-${award.title}`}
-                  className="rounded-2xl border border-white/[0.08] bg-[linear-gradient(180deg,rgba(76,129,227,0.12),rgba(255,255,255,0.01))] p-5"
+                  className="rounded-2xl border border-white/[0.08] bg-[linear-gradient(180deg,rgba(var(--accent-primary-rgb), 0.12),rgba(255,255,255,0.01))] p-5"
                 >
                   <p className="text-lg font-semibold text-white">{award.org}</p>
                   <p className="mt-7 text-sm font-medium text-zinc-200">{award.title}</p>

@@ -139,14 +139,14 @@ export function Experience() {
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 55% 40% at 100% 0%, rgba(76, 129, 227, 0.1), transparent), radial-gradient(ellipse 45% 35% at 0% 80%, rgba(76, 129, 227, 0.07), transparent)",
+            "radial-gradient(ellipse 55% 40% at 100% 0%, rgba(59, 130, 246, 0.1), transparent), radial-gradient(ellipse 45% 35% at 0% 80%, rgba(59, 130, 246, 0.07), transparent)",
         }}
       />
 
       <div className="relative mx-auto max-w-7xl">
         <div className="mx-auto mb-8 max-w-3xl text-center lg:mx-0 lg:mb-10 lg:max-w-2xl lg:text-left">
           <div className="mb-4 flex justify-center lg:justify-start">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/85 px-4 py-1.5 shadow-[inset_0_1px_0_0_rgba(76,129,227,0.28)]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/85 px-4 py-1.5 shadow-[inset_0_1px_0_0_rgba(var(--accent-primary-rgb),0.28)]">
               <span className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.55)]" />
               <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-indigo)]">
                 {experienceIntro.eyebrow}
@@ -195,7 +195,7 @@ export function Experience() {
                           className={cn(
                             "relative z-[2] mt-0.5 h-3 w-3 shrink-0 rounded-full border-2 border-[var(--bg-deep)] bg-zinc-700 shadow-sm ring-1 ring-zinc-600",
                             isActive &&
-                              "scale-110 border-[var(--accent-primary)] bg-[var(--accent-hover)] ring-[var(--accent-primary)] shadow-[0_0_14px_rgba(76,129,227,0.55)]",
+                              "scale-110 border-[var(--accent-primary)] bg-[var(--accent-hover)] ring-[var(--accent-primary)] shadow-[0_0_14px_rgba(var(--accent-primary-rgb),0.55)]",
                           )}
                           aria-hidden
                         />
@@ -211,11 +211,11 @@ export function Experience() {
                           data-stage-index={index}
                           style={{ willChange: reduce ? undefined : "transform, opacity" }}
                           className={cn(
-                            "relative min-w-0 flex-1 overflow-hidden rounded-[1.15rem] border p-4 shadow-[inset_0_1px_0_0_rgba(76,129,227,0.15)] transition-[border-color,box-shadow] duration-500 sm:rounded-2xl sm:p-5 md:p-6",
+                            "relative min-w-0 flex-1 overflow-hidden rounded-[1.15rem] border p-4 shadow-[inset_0_1px_0_0_rgba(var(--accent-primary-rgb),0.15)] transition-[border-color,box-shadow] duration-500 sm:rounded-2xl sm:p-5 md:p-6",
                             "transform-gpu backface-hidden",
                             "bg-gradient-to-br from-[#0f1830] via-[#0a0f1c] to-[#050508]",
                             isActive
-                              ? "border-[var(--accent-primary)]/50 shadow-[0_0_52px_-22px_rgba(76,129,227,0.38)]"
+                              ? "border-[var(--accent-primary)]/50 shadow-[0_0_52px_-22px_rgba(var(--accent-primary-rgb),0.38)]"
                               : "border-white/[0.08]",
                           )}
                         >
@@ -232,9 +232,9 @@ export function Experience() {
                                   ? {}
                                   : {
                                       boxShadow: [
-                                        "0 0 20px -6px rgba(76,129,227,0.45)",
-                                        "0 0 30px -4px rgba(76,129,227,0.55)",
-                                        "0 0 20px -6px rgba(76,129,227,0.45)",
+                                        "0 0 20px -6px rgba(59, 130, 246, 0.45)",
+                                        "0 0 30px -4px rgba(59, 130, 246, 0.55)",
+                                        "0 0 20px -6px rgba(59, 130, 246, 0.45)",
                                       ],
                                     }
                               }

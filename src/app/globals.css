@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Dark (default) — #4c81e3 accent palette */
+/* Dark (default) — lavender + Tailwind blue (reference: SKILLS badge + hero gradient) */
 :root,
 [data-theme="dark"] {
   --bg-deep: #000000;
@@ -8,24 +8,29 @@
   --bg-elevated: #131313;
   --bg-card: #262626;
   --text-main: #ffffff;
-  --text-muted: #999999;
+  --text-muted: #9ca3af;
   --text-muted-dim: #808080;
-  --accent-primary: #4c81e3;
-  --accent-hover: #3a6bc9;
-  --accent-deep: #2f5aab;
-  --accent-indigo: var(--accent-primary);
+  /* Primary blue — buttons, links, CTAs (#3B82F6) */
+  --accent-primary: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-deep: #1d4ed8;
+  /* Lavender / violet — badges, eyebrows, gradient start (#A78BFA) */
+  --accent-highlight: #a78bfa;
+  --accent-highlight-mid: #818cf8;
+  --accent-highlight-rgb: 167, 139, 250;
+  --accent-indigo: var(--accent-highlight);
   --accent-purple: var(--accent-hover);
-  --accent-cyan: #4c81e3;
-  --accent-primary-rgb: 76, 129, 227;
-  --accent-hover-rgb: 58, 107, 201;
-  --accent-deep-rgb: 47, 90, 171;
+  --accent-cyan: var(--accent-primary);
+  --accent-primary-rgb: 59, 130, 246;
+  --accent-hover-rgb: 37, 99, 235;
+  --accent-deep-rgb: 29, 78, 216;
   --border-glass: rgba(255, 255, 255, 0.08);
-  --glow-indigo: rgba(76, 129, 227, 0.32);
-  --glow-cyan: rgba(47, 90, 171, 0.22);
+  --glow-indigo: rgba(59, 130, 246, 0.32);
+  --glow-cyan: rgba(29, 78, 216, 0.22);
   --ai-accent: #8b5cf6;
   --ai-accent-bright: #a78bfa;
   --ai-accent-rgb: 139, 92, 246;
-  --ai-glow: rgba(139, 92, 246, 0.38);
+  --ai-glow: rgba(167, 139, 250, 0.38);
   --ai-border: rgba(139, 92, 246, 0.35);
 }
 
@@ -236,12 +241,13 @@ body {
 }
 
 .text-gradient {
+  /* Hero “for real users.” — pale blue → #3B82F6 */
   background: linear-gradient(
-    135deg,
-    #d4e2f8 0%,
-    #6b94d4 42%,
-    var(--accent-primary) 78%,
-    var(--accent-hover) 100%
+    90deg,
+    #c3dafe 0%,
+    #a3c2f7 28%,
+    var(--accent-primary) 72%,
+    #2563eb 100%
   );
   -webkit-background-clip: text;
   background-clip: text;

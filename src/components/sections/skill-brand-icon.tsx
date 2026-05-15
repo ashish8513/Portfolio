@@ -34,6 +34,7 @@ import {
   SiLinux,
   SiMongodb,
   SiMysql,
+  SiPostgresql,
   SiNextdotjs,
   SiNodedotjs,
   SiOpenai,
@@ -42,8 +43,10 @@ import {
   SiRedis,
   SiRedux,
   SiSpring,
+  SiSocketdotio,
   SiSpringboot,
   SiTailwindcss,
+  SiTypescript,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 
@@ -55,6 +58,7 @@ type BrandIcon = {
 const SKILL_BRAND_ICONS: Record<string, BrandIcon> = {
   Java: { Icon: FaJava, color: "#ED8B00" },
   JavaScript: { Icon: SiJavascript, color: "#F7DF1E" },
+  TypeScript: { Icon: SiTypescript, color: "#3178C6" },
   "C++ (DSA & Problem Solving)": { Icon: SiCplusplus, color: "#00599C" },
 
   "React.js": { Icon: SiReact, color: "#61DAFB" },
@@ -68,17 +72,19 @@ const SKILL_BRAND_ICONS: Record<string, BrandIcon> = {
   "Express.js": { Icon: SiExpress, color: "#ffffff" },
   "Spring Boot": { Icon: SiSpringboot, color: "#6DB33F" },
   "Spring Data": { Icon: SiSpring, color: "#6DB33F" },
-  "REST APIs": { Icon: Network, color: "#4c81e3" },
+  "REST APIs": { Icon: Network, color: "#3b82f6" },
   "JWT Authentication": { Icon: SiJsonwebtokens, color: "#d63eff" },
-  "Microservices Architecture": { Icon: Boxes, color: "#4c81e3" },
+  "Socket.io": { Icon: SiSocketdotio, color: "#010101" },
+  "Microservices Architecture": { Icon: Boxes, color: "#3b82f6" },
 
   MongoDB: { Icon: SiMongodb, color: "#47A248" },
+  PostgreSQL: { Icon: SiPostgresql, color: "#4169E1" },
   MySQL: { Icon: SiMysql, color: "#4479A1" },
   Redis: { Icon: SiRedis, color: "#DC382D" },
 
   Maven: { Icon: SiApachemaven, color: "#C71A36" },
   JUnit: { Icon: FaJava, color: "#25A162" },
-  Mockito: { Icon: Code2, color: "#4c81e3" },
+  Mockito: { Icon: Code2, color: "#3b82f6" },
   Lombok: { Icon: FaJava, color: "#ED8B00" },
 
   Docker: { Icon: SiDocker, color: "#2496ED" },
@@ -90,7 +96,7 @@ const SKILL_BRAND_ICONS: Record<string, BrandIcon> = {
   LangChain: { Icon: SiLangchain, color: "#1FA67A" },
   CrewAI: { Icon: SiCrewai, color: "#FF5A50" },
   "Prompt Engineering": { Icon: MessageSquareCode, color: "#a78bfa" },
-  "RAG (Retrieval Augmented Generation)": { Icon: Database, color: "#4c81e3" },
+  "RAG (Retrieval Augmented Generation)": { Icon: Database, color: "#3b82f6" },
   "AI Agents": { Icon: Bot, color: "#a78bfa" },
   "Fine Tuning": { Icon: Wand2, color: "#c084fc" },
   "Vector Databases": { Icon: Database, color: "#E8B44C" },
@@ -103,7 +109,7 @@ const SKILL_BRAND_ICONS: Record<string, BrandIcon> = {
   Copilot: { Icon: SiGithubcopilot, color: "#ffffff" },
 };
 
-const FALLBACK: BrandIcon = { Icon: Sparkles, color: "#4c81e3" };
+const FALLBACK: BrandIcon = { Icon: Sparkles, color: "#3b82f6" };
 
 type SkillBrandIconProps = {
   name: string;

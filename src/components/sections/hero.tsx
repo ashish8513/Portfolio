@@ -14,8 +14,8 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden pb-0 pt-20 md:pt-24 lg:pt-[6.75rem]">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
         <Spotlight className="-top-40 -left-10 h-screen md:-left-32 md:-top-20" fill="white" />
-        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="#4c81e3" />
-        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="#3a6bc9" />
+        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="#3b82f6" />
+        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="#2563eb" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">

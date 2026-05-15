@@ -4,6 +4,7 @@ import { MotionReveal } from "@/components/motion-reveal";
 import {
   skillCategoryOrder,
   skillHighlights,
+  skillHighlightsMobile,
   skills,
   type SkillCategory,
   type SkillItem,
@@ -12,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   Bot,
-  Braces,
   ChevronDown,
   Cloud,
   Code2,
@@ -33,43 +33,38 @@ const catMeta: Record<
 > = {
   "Programming Languages": {
     label: "Core languages",
-    hint: "Java, JavaScript, and DSA foundations in C++.",
+    hint: "TypeScript, JavaScript, and Java for APIs & apps.",
     Icon: Code2,
   },
   Frontend: {
     label: "Interface layer",
-    hint: "What users touch — components, state, and responsive UI.",
+    hint: "React, Next.js, and mobile-ready UI.",
     Icon: LayoutTemplate,
   },
   Backend: {
     label: "Systems layer",
-    hint: "APIs, auth, services, and server-side architecture.",
+    hint: "MERN + Spring APIs, auth, and services.",
     Icon: Server,
   },
   Databases: {
     label: "Data layer",
-    hint: "Persistence, caching, and query design.",
+    hint: "Document and relational stores in production.",
     Icon: Database,
-  },
-  "Java Ecosystem": {
-    label: "Enterprise Java",
-    hint: "Build, test, and ship with the Spring & Maven stack.",
-    Icon: Braces,
   },
   "DevOps / Cloud": {
     label: "Ship & scale",
-    hint: "Containers, cloud, and automated delivery pipelines.",
+    hint: "Containers, AWS, and CI/CD.",
     Icon: Cloud,
   },
   [GEN_AI]: {
     label: "Intelligence layer",
-    hint: "LLMs, agents, RAG, and production AI workflows.",
+    hint: "LLMs, RAG, agents — what I ship today.",
     Icon: Bot,
     featured: true,
   },
   "Tools & Productivity": {
     label: "Delivery layer",
-    hint: "Version control, IDEs, and day-to-day shipping tools.",
+    hint: "Git, GitHub, and API testing in the loop.",
     Icon: Wrench,
   },
 };
@@ -99,7 +94,7 @@ function SignalDots({
             i < filled
               ? variant === "ai"
                 ? "bg-[var(--ai-accent-bright)] shadow-[0_0_8px_var(--ai-glow)]"
-                : "bg-[var(--accent-hover)] shadow-[0_0_8px_rgba(76,129,227,0.55)]"
+                : "bg-[var(--accent-hover)] shadow-[0_0_8px_rgba(var(--accent-primary-rgb),0.55)]"
               : "bg-zinc-800",
           )}
         />
@@ -196,6 +191,11 @@ export function SkillsShowcase() {
   }, []);
 
   const highlightSet = useMemo(() => new Set<string>(skillHighlights), []);
+  const mobileHighlightSet = useMemo(() => new Set<string>(skillHighlightsMobile), []);
+  const mobileGridSkills = useMemo(
+    () => skills.filter((s) => mobileHighlightSet.has(s.name)),
+    [mobileHighlightSet],
+  );
   const gridSkills = useMemo(
     () => (gridExpanded ? skills : skills.filter((s) => highlightSet.has(s.name))),
     [gridExpanded, highlightSet],
@@ -209,14 +209,14 @@ export function SkillsShowcase() {
   return (
     <section
       id="skills"
-      className="section-y relative z-10 scroll-mt-24 overflow-hidden border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 sm:px-6"
+      className="section-y-compact relative z-10 scroll-mt-24 overflow-hidden border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 sm:px-6 lg:py-24"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.4]"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 70% 45% at 50% -10%, rgba(76, 129, 227, 0.14), transparent), radial-gradient(ellipse 45% 40% at 100% 20%, rgba(139, 92, 246, 0.1), transparent)",
+            "radial-gradient(ellipse 70% 45% at 50% -10%, rgba(59, 130, 246, 0.14), transparent), radial-gradient(ellipse 45% 40% at 100% 20%, rgba(139, 92, 246, 0.12), transparent)",
         }}
       />
       <div
@@ -226,39 +226,61 @@ export function SkillsShowcase() {
 
       <div className="relative mx-auto max-w-3xl lg:max-w-5xl">
         <MotionReveal>
-          <div className="py-4 sm:py-8">
+          <div className="py-2 sm:py-4 lg:py-8">
             <div className="mx-auto max-w-3xl px-1 text-center sm:px-4">
               <div className="mb-4 flex justify-center">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/90 px-4 py-1.5 shadow-[inset_0_1px_0_0_rgba(76,129,227,0.35)]">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/90 px-4 py-1.5 shadow-[inset_0_1px_0_0_rgba(var(--accent-primary-rgb),0.35)]">
                   <Sparkles className="h-3.5 w-3.5 text-[var(--ai-accent-bright)]" aria-hidden />
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-indigo)]">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gradient">
                     Skills acquired
                   </span>
                 </span>
               </div>
               <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-[2.75rem] md:leading-tight">
                 Full-stack engineering +{" "}
-                <span className="bg-gradient-to-r from-[var(--ai-accent-bright)] via-[var(--accent-primary)] to-[var(--accent-hover)] bg-clip-text text-transparent">
+                <span className="text-gradient bg-clip-text text-transparent">
                   AI systems
                 </span>
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-zinc-500 sm:text-base">
-                From MERN and Spring APIs to LangChain agents and RAG — depth shown as signal,
-                not exam scores. Tap a lane or expand the grid below.
+              <p className="mt-4 text-sm leading-relaxed text-[#9ca3af] lg:hidden">
+                MERN + production AI — core stack below. Full breakdown on desktop.
+              </p>
+              <p className="mt-4 hidden text-sm leading-relaxed text-[#9ca3af] lg:block lg:text-base">
+                MERN, Spring, and production AI — only what I ship with daily. Tap a lane for depth.
               </p>
             </div>
           </div>
         </MotionReveal>
 
         <MotionReveal>
-          <div className="rounded-2xl border border-white/[0.08] bg-[#080808]/90 p-4 sm:rounded-3xl sm:p-6">
+          <div className="rounded-2xl border border-white/[0.08] bg-[#080808]/90 p-4 lg:hidden">
+            <div className="mb-3 flex items-end justify-between gap-3 border-b border-white/[0.06] pb-3">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                Core stack
+              </p>
+              <span className="text-[11px] text-zinc-600">{skillHighlightsMobile.length} highlights</span>
+            </div>
+            <div className="grid grid-cols-4 gap-x-1 gap-y-4">
+              {mobileGridSkills.map((skill) => (
+                <SkillIconCell
+                  key={skill.name}
+                  name={skill.name}
+                  featured={skill.category === GEN_AI}
+                />
+              ))}
+            </div>
+          </div>
+        </MotionReveal>
+
+        <MotionReveal>
+          <div className="hidden rounded-2xl border border-white/[0.08] bg-[#080808]/90 p-6 lg:block lg:rounded-3xl">
             <div className="mb-4 flex items-end justify-between gap-3 border-b border-white/[0.06] pb-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
                 Core stack
               </p>
               <span className="text-[11px] text-zinc-600">{skills.length} tools</span>
             </div>
-            <div className="grid grid-cols-3 gap-x-2 gap-y-5 sm:grid-cols-5 sm:gap-x-3 lg:grid-cols-6">
+            <div className="grid grid-cols-5 gap-x-3 gap-y-5 xl:grid-cols-6">
               {gridSkills.map((skill) => (
                 <SkillIconCell
                   key={skill.name}
@@ -292,7 +314,10 @@ export function SkillsShowcase() {
           </div>
         </MotionReveal>
 
-        <div ref={stackRef} className="section-body-gap relative scroll-mt-28 space-y-3">
+        <div
+          ref={stackRef}
+          className="section-body-gap relative hidden scroll-mt-28 space-y-3 lg:block"
+        >
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4 border-b border-white/[0.06] pb-5">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
@@ -304,7 +329,7 @@ export function SkillsShowcase() {
             </div>
             <div className="flex flex-wrap items-center gap-3 text-[11px] text-zinc-600">
               <span className="inline-flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[var(--accent-hover)] shadow-[0_0_10px_rgba(76,129,227,0.5)]" />
+                <span className="h-2 w-2 rounded-full bg-[var(--accent-hover)] shadow-[0_0_10px_rgba(var(--accent-primary-rgb),0.5)]" />
                 Depth signal
               </span>
               <span className="inline-flex items-center gap-2">
@@ -332,7 +357,7 @@ export function SkillsShowcase() {
                     isOpen
                       ? isAi
                         ? "border-[var(--ai-border)] shadow-[0_0_52px_-18px_var(--ai-glow)]"
-                        : "border-[var(--accent-primary)]/35 bg-[#0c0c0c] shadow-[0_0_48px_-20px_rgba(76,129,227,0.35)]"
+                        : "border-[var(--accent-primary)]/35 bg-[#0c0c0c] shadow-[0_0_48px_-20px_rgba(var(--accent-primary-rgb),0.35)]"
                       : isAi
                         ? "border-[var(--ai-border)]/50 bg-[#0a0812]/90 hover:border-[var(--ai-border)] hover:bg-[#0c0a14]"
                         : "border-white/[0.07] bg-[#080808]/80 hover:border-white/[0.12] hover:bg-[#0a0a0a]",

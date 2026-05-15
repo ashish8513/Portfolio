@@ -150,18 +150,17 @@ export type SkillCategory =
   | "Frontend"
   | "Backend"
   | "Databases"
-  | "Java Ecosystem"
   | "DevOps / Cloud"
   | "Gen AI / AI Engineering"
   | "Tools & Productivity";
 
+/** Core lanes — enough breadth without a laundry list. */
 export const skillCategoryOrder: SkillCategory[] = [
   "Gen AI / AI Engineering",
   "Programming Languages",
   "Frontend",
   "Backend",
   "Databases",
-  "Java Ecosystem",
   "DevOps / Cloud",
   "Tools & Productivity",
 ];
@@ -174,11 +173,13 @@ export type SkillItem = {
 
 /** Spotlight skills for the quick-scan grid above the stack uplink. */
 export const skillHighlights = [
+  "TypeScript",
   "React.js",
   "Next.js",
   "Node.js",
   "Spring Boot",
   "MongoDB",
+  "PostgreSQL",
   "LangChain",
   "OpenAI APIs",
   "Docker",
@@ -186,55 +187,56 @@ export const skillHighlights = [
   "Git",
 ] as const;
 
+/** Quick-scan grid on phone — keep it short. */
+export const skillHighlightsMobile = [
+  "React.js",
+  "Next.js",
+  "Node.js",
+  "TypeScript",
+  "LangChain",
+  "OpenAI APIs",
+  "MongoDB",
+  "Docker",
+] as const;
+
 export const skills: SkillItem[] = [
-  { name: "Java", level: 88, category: "Programming Languages" },
+  { name: "TypeScript", level: 90, category: "Programming Languages" },
   { name: "JavaScript", level: 92, category: "Programming Languages" },
-  { name: "C++ (DSA & Problem Solving)", level: 84, category: "Programming Languages" },
+  { name: "Java", level: 88, category: "Programming Languages" },
 
   { name: "React.js", level: 92, category: "Frontend" },
   { name: "Next.js", level: 90, category: "Frontend" },
+  { name: "Tailwind CSS", level: 90, category: "Frontend" },
   { name: "React Native", level: 86, category: "Frontend" },
   { name: "Redux", level: 84, category: "Frontend" },
-  { name: "Tailwind CSS", level: 90, category: "Frontend" },
-  { name: "Axios", level: 86, category: "Frontend" },
 
   { name: "Node.js", level: 92, category: "Backend" },
   { name: "Express.js", level: 90, category: "Backend" },
   { name: "Spring Boot", level: 86, category: "Backend" },
-  { name: "Spring Data", level: 84, category: "Backend" },
   { name: "REST APIs", level: 92, category: "Backend" },
   { name: "JWT Authentication", level: 90, category: "Backend" },
-  { name: "Microservices Architecture", level: 84, category: "Backend" },
+  { name: "Socket.io", level: 88, category: "Backend" },
 
   { name: "MongoDB", level: 90, category: "Databases" },
+  { name: "PostgreSQL", level: 86, category: "Databases" },
   { name: "MySQL", level: 86, category: "Databases" },
   { name: "Redis", level: 82, category: "Databases" },
 
-  { name: "Maven", level: 86, category: "Java Ecosystem" },
-  { name: "JUnit", level: 84, category: "Java Ecosystem" },
-  { name: "Mockito", level: 80, category: "Java Ecosystem" },
-  { name: "Lombok", level: 82, category: "Java Ecosystem" },
-
   { name: "Docker", level: 88, category: "DevOps / Cloud" },
-  { name: "Linux", level: 88, category: "DevOps / Cloud" },
   { name: "AWS", level: 84, category: "DevOps / Cloud" },
+  { name: "Linux", level: 88, category: "DevOps / Cloud" },
   { name: "CI/CD", level: 82, category: "DevOps / Cloud" },
 
   { name: "OpenAI APIs", level: 90, category: "Gen AI / AI Engineering" },
   { name: "LangChain", level: 88, category: "Gen AI / AI Engineering" },
-  { name: "CrewAI", level: 84, category: "Gen AI / AI Engineering" },
-  { name: "Prompt Engineering", level: 90, category: "Gen AI / AI Engineering" },
   { name: "RAG (Retrieval Augmented Generation)", level: 88, category: "Gen AI / AI Engineering" },
+  { name: "Prompt Engineering", level: 90, category: "Gen AI / AI Engineering" },
   { name: "AI Agents", level: 86, category: "Gen AI / AI Engineering" },
-  { name: "Fine Tuning", level: 80, category: "Gen AI / AI Engineering" },
   { name: "Vector Databases", level: 86, category: "Gen AI / AI Engineering" },
 
   { name: "Git", level: 94, category: "Tools & Productivity" },
   { name: "GitHub", level: 92, category: "Tools & Productivity" },
   { name: "Postman", level: 90, category: "Tools & Productivity" },
-  { name: "Cursor", level: 92, category: "Tools & Productivity" },
-  { name: "VS Code", level: 94, category: "Tools & Productivity" },
-  { name: "Copilot", level: 90, category: "Tools & Productivity" },
 ];
 
 export type Project = {
