@@ -1,36 +1,50 @@
-# Deploy to AWS EC2 on push to `main`: SSH in, pull latest, install, build, restart PM2.
+# Lint + production build on push / PR. EC2 deploy runs after CI succeeds on `main` only (single run).
 #
-# Repository secrets (Settings → Secrets and variables → Actions):
-#   HOST       — EC2 public hostname or IP
-#   USERNAME   — SSH login user (e.g. ubuntu, ec2-user)
-#   SSH_KEY    — Private key matching the instance key pair (full PEM, including headers)
-#
-# The server must already have:
-#   • Repo cloned at /var/www/Portfolio with `origin` pointing at this GitHub repo
-#   • Git credentials on the host if the repo is private (deploy key or `git pull` auth)
-#   • Node.js / npm and PM2 available in PATH for the SSH user
-#   • PM2 process named "portfolio" (e.g. pm2 start npm --name "portfolio" -- start)
-#   • Any required `.env` / build-time variables for Next.js under /var/www/Portfolio
-#
-# Optional: set Variables → NEXT_PUBLIC_SITE_URL for parity with CI (passed into the remote build).
-name: Deploy (EC2)
+# Deploy secrets: HOST, USERNAME, SSH_KEY. Server needs repo at /var/www/Portfolio, Node, PM2 app "portfolio".
+name: CI & Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
   workflow_dispatch:
 
 concurrency:
-  group: deploy-ec2-${{ github.workflow }}
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Main: let deploys finish; other refs: cancel superseded CI.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+
   deploy:
     name: Deploy to EC2
+    needs: lint-and-build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
-
     steps:
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.2.2

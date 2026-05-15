@@ -62,7 +62,7 @@ export function Experience() {
 
     cards.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [reduce, experience.length]);
+  }, [reduce]);
 
   useLayoutEffect(() => {
     if (reduce || typeof window === "undefined") return;
@@ -125,7 +125,7 @@ export function Experience() {
       window.removeEventListener("resize", onResize);
       ctx.revert();
     };
-  }, [reduce, experience.length]);
+  }, [reduce]);
 
   return (
     <section

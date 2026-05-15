@@ -28,8 +28,11 @@ export function ThemeToggle({ className }: Props) {
           ? "light"
           : "dark";
     applyTheme(initial);
-    setTheme(initial);
-    setMounted(true);
+    // Defer state updates so we don't setState synchronously inside the effect body (react-hooks/set-state-in-effect).
+    queueMicrotask(() => {
+      setTheme(initial);
+      setMounted(true);
+    });
   }, []);
 
   const toggle = () => {
