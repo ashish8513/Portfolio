@@ -11,7 +11,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative z-10 scroll-mt-24 border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 py-24 sm:px-6"
+      className="section-y relative z-10 scroll-mt-24 border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 sm:px-6"
     >
       <div className="mx-auto max-w-7xl">
         <MotionReveal>
@@ -22,7 +22,7 @@ export function Projects() {
           />
         </MotionReveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="section-body-gap grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {ordered.map((project) => (
             <MotionReveal key={project.title}>
               <ProjectCard project={project} />

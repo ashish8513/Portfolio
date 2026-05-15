@@ -56,7 +56,7 @@ export function Skills() {
                       </div>
                       <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-zinc-800">
                         <motion.div
-                          className="h-full rounded-full bg-gradient-to-r from-violet-600 to-blue-500"
+                          className="h-full rounded-full bg-gradient-to-r from-[var(--accent-hover)] to-[var(--accent-primary)]"
                           initial={reduce ? { width: `${skill.level}%` } : { width: 0 }}
                           whileInView={
                             reduce ? undefined : { width: `${skill.level}%` }

@@ -8,7 +8,7 @@ const points = [
 
 export function Signature() {
   return (
-    <section className="relative z-10 overflow-hidden border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 py-24 sm:px-6">
+    <section className="section-y-compact relative z-10 overflow-hidden border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 sm:px-6">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-[15%] top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--accent-indigo)] opacity-[0.12] blur-[100px]" />
         <div className="absolute bottom-[10%] left-[10%] h-64 w-64 rounded-full bg-[var(--accent-hover)] opacity-[0.12] blur-[90px]" />
@@ -16,7 +16,7 @@ export function Signature() {
 
       <div className="relative mx-auto max-w-7xl">
         <MotionReveal>
-          <div className="card-landin rounded-3xl p-8 sm:p-10 lg:p-12">
+          <div className="card-landin rounded-3xl p-6 sm:p-8 lg:p-12">
             <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:gap-14">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--accent-indigo)]">

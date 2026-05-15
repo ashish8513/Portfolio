@@ -1,15 +1,20 @@
 "use client";
 
+import { HeaderGitHubActions } from "@/components/header-github-actions";
 import { site, nav } from "@/lib/content";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
-import { Download, Menu, X } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+const sheetEase = [0.22, 1, 0.36, 1] as const;
+const sheetTransition = { duration: 0.32, ease: sheetEase };
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -20,12 +25,13 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    window.dispatchEvent(new Event("portfolio:lenis-stop"));
     return () => {
-      document.body.style.overflow = prev;
+      window.dispatchEvent(new Event("portfolio:lenis-start"));
     };
   }, [open]);
+
+  const navLinks = nav.filter((item) => item.label !== "GitHub");
 
   return (
     <>
@@ -51,7 +57,7 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:gap-2">
-            {nav.map((item) => (
+            {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -63,21 +69,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-2 lg:gap-2">
-            <a
-              href={site.resume.href}
-              download={site.resume.downloadFilename}
-              className="hidden items-center gap-1.5 rounded-lg border border-white/10 bg-[#0a0a0a]/80 px-3 py-2 text-[11px] font-semibold text-zinc-300 transition hover:border-[var(--accent-primary)]/35 hover:text-white lg:inline-flex sm:text-sm"
-              title="Download résumé"
-            >
-              <Download className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" aria-hidden />
-              Résumé
-            </a>
-            <Link
-              href="#contact"
-              className="btn-blue-glow hidden shrink-0 px-3 py-2 text-[11px] font-semibold lg:inline-flex sm:px-4 sm:text-sm"
-            >
-              Get in touch
-            </Link>
+            <HeaderGitHubActions className="hidden lg:flex" />
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-[#0a0a0a]/90 text-white transition hover:bg-white/[0.06] lg:hidden"
@@ -99,11 +91,11 @@ export function SiteHeader() {
               type="button"
               data-site-nav
               aria-label="Close menu"
-              className="fixed inset-0 z-[59] cursor-default bg-black/65 backdrop-blur-[10px] lg:hidden"
+              className="fixed inset-0 z-[59] cursor-default bg-black/75 lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.22 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
               onClick={() => setOpen(false)}
             />
 
@@ -113,29 +105,27 @@ export function SiteHeader() {
               role="dialog"
               aria-modal="true"
               aria-label="Site navigation"
-              className="fixed inset-x-0 top-0 z-[60] flex max-h-[min(88vh,720px)] flex-col overflow-hidden rounded-b-[1.75rem] border-b border-white/[0.1] bg-[#0a0a0a]/[0.98] shadow-[0_28px_70px_-28px_rgba(0,0,238,0.45)] backdrop-blur-xl lg:hidden"
-              initial={{ y: "-105%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "-105%" }}
-              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-x-0 top-0 z-[60] flex max-h-[min(88vh,720px)] flex-col overflow-hidden rounded-b-[1.75rem] border-b border-white/[0.1] bg-[#0a0a0a] shadow-[0_24px_48px_-16px_rgba(0,0,0,0.65)] will-change-transform transform-gpu lg:hidden"
+              initial={reduceMotion ? { opacity: 0 } : { y: "-100%" }}
+              animate={reduceMotion ? { opacity: 1 } : { y: 0 }}
+              exit={reduceMotion ? { opacity: 0 } : { y: "-100%" }}
+              transition={reduceMotion ? { duration: 0.15 } : sheetTransition}
               style={{ paddingTop: "env(safe-area-inset-top)" }}
             >
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,85,254,0.14),transparent_65%)]" />
-
               <div className="relative flex shrink-0 items-center justify-between gap-3 border-b border-white/[0.08] px-5 pb-4 pt-4">
                 <Link
                   href="#top"
                   className="flex min-w-0 items-center gap-3 font-semibold tracking-tight text-white"
                   onClick={() => setOpen(false)}
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-black/40 text-sm font-bold shadow-inner backdrop-blur-sm">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-[#131313] text-sm font-bold shadow-inner">
                     AP
                   </span>
                   <span className="truncate text-base">{site.name.split(" ")[0]}</span>
                 </Link>
                 <button
                   type="button"
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] text-white backdrop-blur-sm transition hover:bg-white/[0.1]"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] text-white transition hover:bg-white/[0.1]"
                   aria-label="Close menu"
                   onClick={() => setOpen(false)}
                 >
@@ -143,36 +133,22 @@ export function SiteHeader() {
                 </button>
               </div>
 
-              <nav className="relative flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-contain px-5 py-4">
-                {nav.map((item, i) => (
-                  <motion.div
+              <nav className="relative flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-contain px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] [-webkit-overflow-scrolling:touch]">
+                {navLinks.map((item) => (
+                  <Link
                     key={item.href}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.04 + i * 0.035, duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                    href={item.href}
+                    className="block rounded-xl px-1 py-3 text-[1.05rem] font-medium tracking-tight text-white transition-colors hover:bg-white/[0.06] active:bg-white/[0.09]"
+                    onClick={() => setOpen(false)}
                   >
-                    <Link
-                      href={item.href}
-                      className="block rounded-xl px-1 py-3 text-[1.05rem] font-medium tracking-tight text-white transition hover:bg-white/[0.06] active:bg-white/[0.09]"
-                      onClick={() => setOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
+                    {item.label}
+                  </Link>
                 ))}
+                <div className="mt-3 border-t border-white/[0.08] pt-4">
+                  <HeaderGitHubActions onNavigate={() => setOpen(false)} />
+                </div>
               </nav>
 
-              <div className="relative shrink-0 border-t border-white/[0.08] px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
-                <a
-                  href={site.resume.href}
-                  download={site.resume.downloadFilename}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.05] py-3.5 text-[0.9375rem] font-semibold text-white backdrop-blur-sm transition hover:bg-white/[0.08]"
-                  onClick={() => setOpen(false)}
-                >
-                  <Download className="h-4 w-4" aria-hidden />
-                  Download résumé
-                </a>
-              </div>
             </motion.div>
           </>
         ) : null}

@@ -7,6 +7,7 @@ export const site = {
   heroTitleLine1: "Full stack engineering",
   heroTitleLine2: "for real users.",
   role: "Full Stack Engineer",
+  education: "MCA, Chandigarh University",
   roles: [
     "Full Stack Engineer",
     "MERN stack",
@@ -27,6 +28,8 @@ export const site = {
     downloadFilename: "Ashish_Resume_v3.pdf",
   },
 } as const;
+
+export const githubUsername = "ashish8513" as const;
 
 /** Set `NEXT_PUBLIC_SITE_URL` in prod (e.g. https://yoursite.vercel.app) — used for SEO & JSON-LD */
 export const siteUrl =
@@ -58,7 +61,7 @@ export const nav = [
   { label: "Work Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Coding Profiles", href: "#profiles" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "GitHub", href: "#github" },
   { label: "Contact", href: "#contact" },
 ] as const;
 

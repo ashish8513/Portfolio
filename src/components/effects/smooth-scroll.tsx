@@ -29,7 +29,14 @@ export function SmoothScroll() {
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.lagSmoothing(0);
 
+    const onStop = () => lenis.stop();
+    const onStart = () => lenis.start();
+    window.addEventListener("portfolio:lenis-stop", onStop);
+    window.addEventListener("portfolio:lenis-start", onStart);
+
     return () => {
+      window.removeEventListener("portfolio:lenis-stop", onStop);
+      window.removeEventListener("portfolio:lenis-start", onStart);
       gsap.ticker.remove(update);
       lenis.destroy();
       document.documentElement.classList.remove("lenis", "lenis-smooth");

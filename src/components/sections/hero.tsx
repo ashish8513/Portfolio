@@ -4,37 +4,46 @@ import { HeroVisual } from "@/components/landin/hero-visual";
 import { Spotlight } from "@/components/ui/spotlight";
 import { heroStackPills, site } from "@/lib/content";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 
 export function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="relative overflow-hidden pb-0 pt-24 md:pt-28 lg:pt-32">
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+    <section id="top" className="relative overflow-hidden pb-0 pt-20 md:pt-24 lg:pt-[6.75rem]">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
         <Spotlight className="-top-40 -left-10 h-screen md:-left-32 md:-top-20" fill="white" />
-        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="#0000EE" />
-        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="#0055FE" />
+        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="#4c81e3" />
+        <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="#3a6bc9" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid items-center gap-10 pb-14 sm:gap-12 sm:pb-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12 lg:pb-24">
-          <motion.div
-            className="mx-auto w-full max-w-[22rem] text-left sm:max-w-lg lg:mx-0 lg:max-w-none"
-            initial={reduce ? false : { opacity: 0, y: 24 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="mb-6 w-full max-w-md rounded-2xl border border-white/10 bg-[#0a0a0a]/80 p-3 backdrop-blur-md sm:max-w-lg sm:inline-flex sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:rounded-full sm:p-1 sm:pr-4 md:mb-8">
-              <span className="rounded-full bg-[var(--accent-indigo)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white sm:shrink-0">
-                Open
-              </span>
-              <span className="mt-2 block text-xs font-medium leading-snug text-zinc-400 sm:mt-0 sm:ml-3 sm:inline sm:max-w-[min(100%,20rem)] sm:leading-normal">
-                {site.role} · MCA, Chandigarh University
-              </span>
-            </div>
+        <motion.div
+          className="mt-3 grid gap-8 pb-14 sm:mt-4 sm:gap-10 sm:pb-16 lg:mt-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:grid-rows-[auto_auto_1fr] lg:items-start lg:gap-x-12 lg:gap-y-3 lg:pb-24"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="order-1 mx-auto flex w-full max-w-[22rem] flex-wrap items-center gap-2 text-[0.8125rem] font-medium leading-snug text-zinc-400 sm:max-w-lg sm:text-sm lg:order-none lg:col-start-1 lg:row-start-1 lg:mx-0 lg:max-w-none">
+            <span className="rounded-full bg-[var(--accent-primary)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+              Open
+            </span>
+            <span>
+              {site.role} · {site.education}
+            </span>
+          </p>
 
+          <motion.div
+            className="relative order-3 mx-auto flex w-full max-w-[min(100%,18rem)] justify-center sm:max-w-xs lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-4 lg:mx-0 lg:max-w-none lg:justify-end lg:self-start"
+            initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+            animate={reduce ? undefined : { opacity: 1, scale: 1 }}
+            transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <HeroVisual />
+          </motion.div>
+
+          <div className="order-2 mx-auto w-full max-w-[22rem] text-left sm:max-w-lg lg:order-none lg:col-start-1 lg:row-start-2 lg:mx-0 lg:max-w-none">
             <h1 className="text-balance font-semibold tracking-tight text-white">
               <span className="block text-[2rem] leading-[1.12] sm:text-5xl lg:text-[3.25rem] lg:leading-[1.08]">
                 {site.heroTitleLine1}
@@ -49,9 +58,12 @@ export function Hero() {
               <span className="text-zinc-500">{site.tagline}</span>
             </p>
 
-            <div
+            <motion.div
               className="mt-4 flex max-w-xl flex-wrap gap-2"
               aria-label="Primary technologies"
+              initial={reduce ? false : { opacity: 0, y: 10 }}
+              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              transition={{ delay: 0.06, duration: 0.5 }}
             >
               {heroStackPills.map((pill) => (
                 <span
@@ -61,7 +73,7 @@ export function Hero() {
                   {pill}
                 </span>
               ))}
-            </div>
+            </motion.div>
 
             <motion.div
               className="mt-8 grid w-full max-w-lg grid-cols-1 gap-3 sm:max-w-xl sm:grid-cols-2 sm:gap-3 lg:max-w-none"
@@ -69,18 +81,20 @@ export function Hero() {
               animate={reduce ? undefined : { opacity: 1, y: 0 }}
               transition={{ delay: 0.12, duration: 0.55 }}
             >
+              <a
+                href={site.resume.href}
+                download={site.resume.downloadFilename}
+                className="btn-outline-landin min-h-[44px] w-full justify-center gap-2 px-5 text-[0.8125rem] sm:min-h-0 sm:px-7 sm:text-[0.875rem]"
+              >
+                <Download className="h-4 w-4 shrink-0" aria-hidden />
+                Résumé
+              </a>
               <Link
                 href="#contact"
                 className="btn-primary-landin min-h-[44px] w-full justify-center px-5 text-[0.8125rem] sm:min-h-0 sm:px-7 sm:text-[0.875rem]"
               >
-                Connect with me
+                Get in touch
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
-              </Link>
-              <Link
-                href="#about"
-                className="btn-outline-landin min-h-[44px] w-full justify-center px-5 text-[0.8125rem] sm:min-h-0 sm:px-7 sm:text-[0.875rem]"
-              >
-                About my work
               </Link>
             </motion.div>
 
@@ -101,17 +115,8 @@ export function Hero() {
                 </div>
               ))}
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="relative mx-auto mt-2 flex w-full max-w-[min(100%,18rem)] justify-center sm:max-w-xs lg:mx-0 lg:mt-0 lg:max-w-none lg:justify-end"
-            initial={reduce ? false : { opacity: 0, scale: 0.96 }}
-            animate={reduce ? undefined : { opacity: 1, scale: 1 }}
-            transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <HeroVisual />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

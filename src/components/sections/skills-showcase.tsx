@@ -51,7 +51,7 @@ function SignalDots({ level }: { level: number }) {
           className={cn(
             "h-1.5 w-1.5 rounded-full transition-colors duration-300",
             i < filled
-              ? "bg-[var(--accent-hover)] shadow-[0_0_8px_rgba(0,85,254,0.55)]"
+              ? "bg-[var(--accent-hover)] shadow-[0_0_8px_rgba(76,129,227,0.55)]"
               : "bg-zinc-800",
           )}
         />
@@ -122,14 +122,14 @@ export function SkillsShowcase() {
   return (
     <section
       id="skills"
-      className="relative z-10 scroll-mt-24 overflow-hidden border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 py-24 sm:px-6"
+      className="section-y relative z-10 scroll-mt-24 overflow-hidden border-t border-white/[0.06] bg-[var(--bg-deep)] px-4 sm:px-6"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.4]"
         aria-hidden
         style={{
           backgroundImage:
-            "radial-gradient(ellipse 70% 45% at 50% -10%, rgba(0, 85, 254, 0.14), transparent), radial-gradient(ellipse 50% 35% at 100% 40%, rgba(0, 0, 238, 0.08), transparent)",
+            "radial-gradient(ellipse 70% 45% at 50% -10%, rgba(76, 129, 227, 0.14), transparent), radial-gradient(ellipse 50% 35% at 100% 40%, rgba(76, 129, 227, 0.08), transparent)",
         }}
       />
       <div className="pointer-events-none absolute left-[12%] top-24 hidden h-[calc(100%-8rem)] w-px bg-gradient-to-b from-[var(--accent-primary)]/35 via-white/[0.06] to-transparent blur-[0.5px] lg:block" aria-hidden />
@@ -140,7 +140,7 @@ export function SkillsShowcase() {
           <div className="py-6 sm:py-10">
             <div className="mx-auto max-w-3xl px-2 text-center sm:px-8">
               <div className="mb-4 flex justify-center">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/90 px-4 py-1.5 shadow-[inset_0_1px_0_0_rgba(0,85,254,0.35)]">
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a0a0a]/90 px-4 py-1.5 shadow-[inset_0_1px_0_0_rgba(76,129,227,0.35)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.6)]" />
                   <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-indigo)]">
                     Capabilities
@@ -158,7 +158,7 @@ export function SkillsShowcase() {
           </div>
         </MotionReveal>
 
-        <div className="relative mt-16 space-y-3 lg:mt-20">
+        <div className="section-body-gap relative space-y-3 lg:mt-20">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-white/[0.06] pb-6">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
@@ -169,7 +169,7 @@ export function SkillsShowcase() {
               </p>
             </div>
             <div className="hidden items-center gap-2 text-[11px] text-zinc-600 sm:flex">
-              <span className="h-2 w-2 rounded-full bg-[var(--accent-hover)] shadow-[0_0_10px_rgba(0,85,254,0.5)]" />
+              <span className="h-2 w-2 rounded-full bg-[var(--accent-hover)] shadow-[0_0_10px_rgba(76,129,227,0.5)]" />
               Signal = depth-of-use, not exam marks.
             </div>
           </div>
@@ -188,7 +188,7 @@ export function SkillsShowcase() {
                   className={cn(
                     "relative flex w-full items-center gap-4 rounded-2xl border px-4 py-4 text-left transition-[border-color,background-color,box-shadow] duration-300 sm:px-5 sm:py-5",
                     isOpen
-                      ? "border-[var(--accent-primary)]/35 bg-[#0c0c0c] shadow-[0_0_48px_-20px_rgba(0,0,238,0.35)]"
+                      ? "border-[var(--accent-primary)]/35 bg-[#0c0c0c] shadow-[0_0_48px_-20px_rgba(76,129,227,0.35)]"
                       : "border-white/[0.07] bg-[#080808]/80 hover:border-white/[0.12] hover:bg-[#0a0a0a]",
                   )}
                 >

@@ -25,7 +25,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative z-10 scroll-mt-24 bg-[var(--bg-deep)] bg-mesh px-4 py-24 sm:px-6"
+      className="section-y relative z-10 scroll-mt-24 bg-[var(--bg-deep)] bg-mesh px-4 sm:px-6"
     >
       <div className="mx-auto max-w-6xl">
         <MotionReveal>
@@ -36,11 +36,11 @@ export function About() {
           />
         </MotionReveal>
 
-        <div className="mt-14 grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
+        <div className="section-body-gap grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
           <MotionReveal className="min-w-0 max-lg:w-full lg:self-start">
-            <div className="group relative aspect-[4/5] min-h-[280px] w-full overflow-hidden rounded-[22px] border border-white/[0.1] bg-[#050508] shadow-[0_32px_80px_-48px_rgba(0,82,255,0.45)] ring-1 ring-white/[0.04]">
+            <div className="group relative aspect-[4/5] min-h-[280px] w-full overflow-hidden rounded-[22px] border border-white/[0.1] bg-[#050508] shadow-[0_32px_80px_-48px_rgba(var(--accent-primary-rgb),0.4)] ring-1 ring-white/[0.04]">
               <div
-                className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(135deg,rgba(0,82,255,0.14)_0%,transparent_42%,transparent_100%)] opacity-90"
+                className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(135deg,rgba(var(--accent-primary-rgb),0.14)_0%,transparent_42%,transparent_100%)] opacity-90"
                 aria-hidden
               />
               <Image
@@ -65,14 +65,14 @@ export function About() {
           {/* Right: bio card + accordion card stacked (not merged) */}
           <div className="flex min-w-0 flex-col gap-8">
             <MotionReveal delay={0.06} className="flex w-full">
-            <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[22px] border border-white/[0.1] bg-[#0c0c12] p-7 shadow-[0_32px_90px_-50px_rgba(0,0,0,0.9)] ring-1 ring-[#0052ff]/15 sm:p-9">
+            <div className="relative flex w-full flex-1 flex-col overflow-hidden rounded-[22px] border border-white/[0.1] bg-[#0c0c12] p-7 shadow-[0_32px_90px_-50px_rgba(0,0,0,0.9)] ring-1 ring-[var(--accent-primary)]/15 sm:p-9">
               {/* Depth: ambient glows + top edge */}
               <div
-                className="pointer-events-none absolute -right-28 -top-28 h-56 w-56 rounded-full bg-[#0052ff]/25 blur-[80px]"
+                className="pointer-events-none absolute -right-28 -top-28 h-56 w-56 rounded-full bg-[var(--accent-primary)]/25 blur-[80px]"
                 aria-hidden
               />
               <div
-                className="pointer-events-none absolute -bottom-24 -left-20 h-48 w-48 rounded-full bg-[#0052ff]/12 blur-[70px]"
+                className="pointer-events-none absolute -bottom-24 -left-20 h-48 w-48 rounded-full bg-[var(--accent-primary)]/12 blur-[70px]"
                 aria-hidden
               />
               <div
@@ -97,7 +97,7 @@ export function About() {
 
                 <div className="my-8 h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent/0" aria-hidden />
 
-                <p className="mb-4 bg-gradient-to-r from-[#7cb4ff] to-[#0052ff] bg-clip-text text-[11px] font-bold uppercase tracking-[0.24em] text-transparent sm:text-xs">
+                <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.24em] text-[var(--accent-primary)] sm:text-xs">
                   Core stack
                 </p>
 
@@ -108,7 +108,7 @@ export function About() {
                       className="flex gap-3.5 text-[15px] leading-snug text-zinc-200 sm:text-[15px]"
                     >
                       <span
-                        className="mt-0.5 flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[#2b8cff] to-[#0052ff] shadow-[0_0_22px_-4px_rgba(0,82,255,0.65)] ring-2 ring-[#0052ff]/25"
+                        className="mt-0.5 flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full bg-gradient-to-b from-[var(--accent-primary)] to-[var(--accent-hover)] shadow-[0_0_22px_-4px_rgba(var(--accent-primary-rgb),0.5)] ring-2 ring-[var(--accent-primary)]/25"
                         aria-hidden
                       >
                         <Check className="h-3.5 w-3.5 text-white" strokeWidth={2.75} />
@@ -120,10 +120,7 @@ export function About() {
 
                 <p className="mt-10 text-sm text-zinc-500">{site.location}</p>
 
-                <Link
-                  href="#contact"
-                  className="mt-5 flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#1a7cff] to-[#0052ff] px-5 py-4 text-sm font-bold text-white shadow-[0_16px_48px_-14px_rgba(0,82,255,0.65)] ring-1 ring-white/10 transition-[filter,transform,box-shadow] hover:brightness-110 hover:shadow-[0_20px_56px_-12px_rgba(0,82,255,0.55)] active:scale-[0.99]"
-                >
+                <Link href="#contact" className="btn-primary-landin mt-5 w-full py-4 text-sm font-bold">
                   Start a project
                 </Link>
               </div>

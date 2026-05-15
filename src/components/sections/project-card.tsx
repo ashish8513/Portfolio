@@ -51,11 +51,11 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
       onMouseLeave={onLeave}
       className={cn(
         "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#1a2644] bg-[#070b16]",
-        "shadow-[0_24px_60px_-30px_rgba(0,85,254,0.25)] transition-[border-color,box-shadow,transform] hover:border-[var(--accent-hover)]/45 hover:shadow-[0_34px_75px_-28px_rgba(0,85,254,0.35)]",
+        "shadow-[0_24px_60px_-30px_rgba(76,129,227,0.25)] transition-[border-color,box-shadow,transform] hover:border-[var(--accent-hover)]/45 hover:shadow-[0_34px_75px_-28px_rgba(76,129,227,0.35)]",
         className,
       )}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,85,254,0.08),transparent_38%,rgba(0,0,0,0.3)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(76,129,227,0.08),transparent_38%,rgba(0,0,0,0.3)_100%)]" />
       <ArrowUpRight className="pointer-events-none absolute right-3 top-3 z-10 h-3.5 w-3.5 text-zinc-500 transition-colors group-hover:text-zinc-300" />
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-900">
         <Image

@@ -42,7 +42,7 @@ function FlowChecks() {
       <line x1="27" y1="17" x2="27" y2="100" stroke="#0D2557" strokeWidth="2" />
       {[17, 58, 99].map((y) => (
         <g key={y}>
-          <circle cx="27" cy={y} r="13" fill="#0055FE" />
+          <circle cx="27" cy={y} r="13" fill="var(--accent-primary)" />
           <path
             d={`M22 ${y}l3 3 7-7`}
             stroke="#EAF1FF"
@@ -62,8 +62,8 @@ function FlowChecks() {
 export function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-[17.5rem] sm:max-w-xs lg:max-w-[440px] lg:translate-x-4 xl:max-w-none">
-      <div className="pointer-events-none absolute -right-6 -top-10 h-40 w-40 rounded-full bg-[var(--accent-primary)] opacity-25 blur-[80px]" />
-      <div className="pointer-events-none absolute -bottom-8 -left-4 h-36 w-36 rounded-full bg-[var(--accent-hover)] opacity-22 blur-[72px]" />
+      <div className="pointer-events-none absolute -right-6 -top-10 h-40 w-40 rounded-full bg-[var(--accent-primary)] opacity-[0.06] blur-[80px]" />
+      <div className="pointer-events-none absolute -bottom-8 -left-4 h-36 w-36 rounded-full bg-[var(--accent-hover)] opacity-[0.05] blur-[72px]" />
 
       {floatBadges.map((b) => (
         <motion.div
@@ -84,16 +84,15 @@ export function HeroVisual() {
       ))}
 
       <motion.div
-        className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#060606] shadow-[0_32px_80px_-32px_rgba(0,0,238,0.45)] md:rounded-3xl"
+        className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#060606] shadow-[0_24px_48px_-28px_rgba(0,0,0,0.65)] md:rounded-3xl"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
       >
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.35]"
+          className="pointer-events-none absolute inset-0 opacity-[0.28]"
           style={{
             backgroundImage: `
-              radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 85, 254, 0.22), transparent),
               linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
             `,
@@ -193,7 +192,7 @@ export function HeroVisual() {
                   </div>
 
                   <motion.div
-                    className="flex items-center gap-2 rounded-xl border border-white/[0.07] bg-gradient-to-r from-[var(--accent-primary)]/12 to-transparent px-2 py-2 sm:px-3"
+                    className="flex items-center gap-2 rounded-xl border border-white/[0.07] bg-white/[0.03] px-2 py-2 sm:px-3"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.55, duration: 0.45 }}
@@ -213,8 +212,7 @@ export function HeroVisual() {
             </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/25" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--accent-primary)]/14 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
           <div className="pointer-events-none absolute inset-[1px] rounded-[inherit] border border-white/[0.05]" />
         </div>
       </motion.div>

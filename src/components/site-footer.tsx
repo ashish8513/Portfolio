@@ -90,7 +90,7 @@ export function SiteFooter() {
               href={profiles.find((p) => p.icon === "github")?.href ?? "https://github.com"}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-400 underline-offset-4 transition hover:text-white hover:underline"
+              className="text-zinc-400 underline-offset-4 transition hover:text-[var(--github-l3)] hover:underline"
             >
               GitHub →
             </a>
