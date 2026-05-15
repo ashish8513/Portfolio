@@ -55,7 +55,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          script_stop: true
           command_timeout: 25m
           envs: NEXT_PUBLIC_SITE_URL
           script: |
