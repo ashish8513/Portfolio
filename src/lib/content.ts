@@ -31,7 +31,7 @@ export const site = {
 
 export const githubUsername = "ashish8513" as const;
 
-/** Set `NEXT_PUBLIC_SITE_URL` in prod (e.g. https://yoursite.vercel.app) — used for SEO & JSON-LD */
+/** Set `NEXT_PUBLIC_SITE_URL` in prod (e.g. https://your-domain.com) — used for SEO & JSON-LD */
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 

@@ -1,0 +1,55 @@
+# Deploy to AWS EC2 on push to `main`: SSH in, pull latest, install, build, restart PM2.
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   HOST       — EC2 public hostname or IP
+#   USERNAME   — SSH login user (e.g. ubuntu, ec2-user)
+#   SSH_KEY    — Private key matching the instance key pair (full PEM, including headers)
+#
+# The server must already have:
+#   • Repo cloned at /var/www/Portfolio with `origin` pointing at this GitHub repo
+#   • Git credentials on the host if the repo is private (deploy key or `git pull` auth)
+#   • Node.js / npm and PM2 available in PATH for the SSH user
+#   • PM2 process named "portfolio" (e.g. pm2 start npm --name "portfolio" -- start)
+#   • Any required `.env` / build-time variables for Next.js under /var/www/Portfolio
+#
+# Optional: set Variables → NEXT_PUBLIC_SITE_URL for parity with CI (passed into the remote build).
+name: Deploy (EC2)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ec2-${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.2
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script_stop: true
+          command_timeout: 25m
+          envs: NEXT_PUBLIC_SITE_URL
+          script: |
+            set -euo pipefail
+            APP_DIR="/var/www/Portfolio"
+            cd "$APP_DIR"
+            git config --global --add safe.directory "$APP_DIR" || true
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart portfolio

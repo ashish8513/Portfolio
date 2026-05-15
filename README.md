@@ -61,7 +61,7 @@ This project presents my skills, projects, and experience through a focused, mod
 
 ## Live Demo
 
-Deploy your fork (e.g. **Vercel**) and add your production URL here:
+Deploy your fork (your own host or CI/CD) and add your production URL here:
 
 - **Portfolio:** [Visit my Portfolio](https://your-domain.example) *(update this link)*
 
