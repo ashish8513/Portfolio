@@ -35,7 +35,7 @@ export function Hero() {
           </p>
 
           <motion.div
-            className="relative order-3 mx-auto flex w-full max-w-[min(100%,18rem)] justify-center sm:max-w-xs lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-4 lg:mx-0 lg:max-w-none lg:justify-end lg:self-start"
+            className="relative order-3 flex w-full max-w-full justify-center sm:mx-auto sm:max-w-sm md:max-w-md lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-4 lg:mx-0 lg:max-w-none lg:justify-end lg:self-start"
             initial={reduce ? false : { opacity: 0, scale: 0.96 }}
             animate={reduce ? undefined : { opacity: 1, scale: 1 }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}

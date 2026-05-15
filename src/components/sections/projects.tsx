@@ -17,12 +17,12 @@ export function Projects() {
         <MotionReveal>
           <SectionHeading
             eyebrow="Portfolio"
-            title="Selected projects that shipped end-to-end"
-            subtitle="Dashboards, mobile apps, and APIs — replace placeholders with your real launches."
+            title="Projects shipped end-to-end"
+            subtitle="Live demos, full tech stacks, and detailed breakdowns — the way recruiters actually read work."
           />
         </MotionReveal>
 
-        <div className="section-body-gap grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="section-body-gap flex flex-col gap-8 sm:gap-10">
           {ordered.map((project) => (
             <MotionReveal key={project.title}>
               <ProjectCard project={project} />

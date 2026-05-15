@@ -61,7 +61,7 @@ function FlowChecks() {
 
 export function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-[17.5rem] sm:max-w-xs lg:max-w-[440px] lg:translate-x-4 xl:max-w-none">
+    <div className="relative mx-auto w-full max-w-full sm:max-w-sm md:max-w-md lg:max-w-[440px] lg:translate-x-4 xl:max-w-none">
       <div className="pointer-events-none absolute -right-6 -top-10 h-40 w-40 rounded-full bg-[var(--accent-primary)] opacity-[0.06] blur-[80px]" />
       <div className="pointer-events-none absolute -bottom-8 -left-4 h-36 w-36 rounded-full bg-[var(--accent-hover)] opacity-[0.05] blur-[72px]" />
 

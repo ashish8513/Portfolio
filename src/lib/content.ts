@@ -145,31 +145,108 @@ export const about = {
   ],
 } as const;
 
-export type SkillCategory = "Frontend" | "Backend" | "Tools";
+export type SkillCategory =
+  | "Programming Languages"
+  | "Frontend"
+  | "Backend"
+  | "Databases"
+  | "Java Ecosystem"
+  | "DevOps / Cloud"
+  | "Gen AI / AI Engineering"
+  | "Tools & Productivity";
+
+export const skillCategoryOrder: SkillCategory[] = [
+  "Gen AI / AI Engineering",
+  "Programming Languages",
+  "Frontend",
+  "Backend",
+  "Databases",
+  "Java Ecosystem",
+  "DevOps / Cloud",
+  "Tools & Productivity",
+];
 
 export type SkillItem = {
   name: string;
-  level: number; // 0–100 for progress bar (self-assessed)
+  level: number;
   category: SkillCategory;
 };
 
+/** Spotlight skills for the quick-scan grid above the stack uplink. */
+export const skillHighlights = [
+  "React.js",
+  "Next.js",
+  "Node.js",
+  "Spring Boot",
+  "MongoDB",
+  "LangChain",
+  "OpenAI APIs",
+  "Docker",
+  "AWS",
+  "Git",
+] as const;
+
 export const skills: SkillItem[] = [
-  { name: "React.js", level: 90, category: "Frontend" },
-  { name: "Next.js", level: 88, category: "Frontend" },
-  { name: "TypeScript / JavaScript (ES6+)", level: 88, category: "Frontend" },
-  { name: "Tailwind CSS & Redux", level: 86, category: "Frontend" },
-  { name: "Node.js / Express.js", level: 90, category: "Backend" },
-  { name: "REST APIs, JWT & RBAC", level: 88, category: "Backend" },
-  { name: "MongoDB & PostgreSQL", level: 86, category: "Backend" },
-  { name: "Socket.io (real-time)", level: 82, category: "Backend" },
-  { name: "Git, Linux & Docker", level: 84, category: "Tools" },
-  { name: "AWS (EC2, S3) & GitHub Actions", level: 78, category: "Tools" },
-  { name: "Postman & Bash", level: 76, category: "Tools" },
+  { name: "Java", level: 88, category: "Programming Languages" },
+  { name: "JavaScript", level: 92, category: "Programming Languages" },
+  { name: "C++ (DSA & Problem Solving)", level: 84, category: "Programming Languages" },
+
+  { name: "React.js", level: 92, category: "Frontend" },
+  { name: "Next.js", level: 90, category: "Frontend" },
+  { name: "React Native", level: 86, category: "Frontend" },
+  { name: "Redux", level: 84, category: "Frontend" },
+  { name: "Tailwind CSS", level: 90, category: "Frontend" },
+  { name: "Axios", level: 86, category: "Frontend" },
+
+  { name: "Node.js", level: 92, category: "Backend" },
+  { name: "Express.js", level: 90, category: "Backend" },
+  { name: "Spring Boot", level: 86, category: "Backend" },
+  { name: "Spring Data", level: 84, category: "Backend" },
+  { name: "REST APIs", level: 92, category: "Backend" },
+  { name: "JWT Authentication", level: 90, category: "Backend" },
+  { name: "Microservices Architecture", level: 84, category: "Backend" },
+
+  { name: "MongoDB", level: 90, category: "Databases" },
+  { name: "MySQL", level: 86, category: "Databases" },
+  { name: "Redis", level: 82, category: "Databases" },
+
+  { name: "Maven", level: 86, category: "Java Ecosystem" },
+  { name: "JUnit", level: 84, category: "Java Ecosystem" },
+  { name: "Mockito", level: 80, category: "Java Ecosystem" },
+  { name: "Lombok", level: 82, category: "Java Ecosystem" },
+
+  { name: "Docker", level: 88, category: "DevOps / Cloud" },
+  { name: "Linux", level: 88, category: "DevOps / Cloud" },
+  { name: "AWS", level: 84, category: "DevOps / Cloud" },
+  { name: "CI/CD", level: 82, category: "DevOps / Cloud" },
+
+  { name: "OpenAI APIs", level: 90, category: "Gen AI / AI Engineering" },
+  { name: "LangChain", level: 88, category: "Gen AI / AI Engineering" },
+  { name: "CrewAI", level: 84, category: "Gen AI / AI Engineering" },
+  { name: "Prompt Engineering", level: 90, category: "Gen AI / AI Engineering" },
+  { name: "RAG (Retrieval Augmented Generation)", level: 88, category: "Gen AI / AI Engineering" },
+  { name: "AI Agents", level: 86, category: "Gen AI / AI Engineering" },
+  { name: "Fine Tuning", level: 80, category: "Gen AI / AI Engineering" },
+  { name: "Vector Databases", level: 86, category: "Gen AI / AI Engineering" },
+
+  { name: "Git", level: 94, category: "Tools & Productivity" },
+  { name: "GitHub", level: 92, category: "Tools & Productivity" },
+  { name: "Postman", level: 90, category: "Tools & Productivity" },
+  { name: "Cursor", level: 92, category: "Tools & Productivity" },
+  { name: "VS Code", level: 94, category: "Tools & Productivity" },
+  { name: "Copilot", level: 90, category: "Tools & Productivity" },
 ];
 
 export type Project = {
   title: string;
-  description: string;
+  /** e.g. "Jun – Jul 2024" */
+  period: string;
+  /** One-line intro under the title */
+  summary: string;
+  /** Bullet achievements (shown on the card) */
+  highlights: string[];
+  /** Longer copy for “View project details” */
+  details: string;
   image: string;
   stack: string[];
   liveUrl?: string;
@@ -180,37 +257,91 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "AI Real-Time Transcriber & Summarizer",
-    description:
-      "Full-stack AI transcription with Whisper for speech-to-text and GPT-4 for meeting summaries; WebSocket streaming under ~2s latency. PostgreSQL with indexing, JWT, RBAC, PDF/DOCX export, full-text search — deployed on AWS EC2 with Docker and GitHub Actions CI/CD.",
+    period: "2024 – 2025",
+    summary:
+      "Full-stack AI product for live meeting transcription, searchable archives, and GPT-4 summaries — built for sub-2s streaming latency.",
+    highlights: [
+      "Whisper speech-to-text with WebSocket streaming and GPT-4 summarization pipelines.",
+      "PostgreSQL with indexing, JWT auth, RBAC, PDF/DOCX export, and full-text search.",
+      "Deployed on AWS EC2 with Docker and GitHub Actions CI/CD.",
+    ],
+    details:
+      "Designed and shipped an end-to-end transcription platform: capture audio in the browser, stream chunks over WebSockets, persist structured transcripts in PostgreSQL, and generate meeting summaries with OpenAI. Role-based access controls separate admin and member views; exports support PDF and DOCX for stakeholders. Infrastructure runs on AWS EC2 with containerized services and automated deploys via GitHub Actions.",
     image:
-      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=960&q=80",
     stack: [
       "React.js",
+      "TypeScript",
       "Node.js",
+      "Express.js",
       "PostgreSQL",
       "OpenAI API",
+      "Whisper",
       "Socket.io",
+      "JWT",
+      "RBAC",
       "Docker",
       "AWS EC2",
+      "GitHub Actions",
+      "REST APIs",
     ],
+    repoUrl: "https://github.com/ashish8513",
     featured: true,
   },
   {
     title: "Full Stack CMS Platform",
-    description:
-      "CMS with lead management, automation, and integrations (WhatsApp API, Voice API). Admin dashboards for reports, attendance, and user management — scaled to 1,000+ active users with tuned backend performance.",
+    period: "2023 – 2024",
+    summary:
+      "Production CMS with lead management, automation, and third-party integrations — scaled past 1,000 active users.",
+    highlights: [
+      "Lead pipelines, WhatsApp API, and voice API integrations for outbound workflows.",
+      "Admin dashboards for reports, attendance, and user management with role-based views.",
+      "Backend tuning and indexing to keep response times stable under growing traffic.",
+    ],
+    details:
+      "Owned core MERN features for a multi-tenant CMS used in daily operations: content modules, lead capture, automation rules, and integration hooks for WhatsApp and voice providers. Built reporting and attendance views for admins, hardened JWT-protected APIs, and optimized MongoDB queries as monthly active users crossed 1,000.",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    stack: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT"],
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=960&q=80",
+    stack: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "REST APIs",
+      "WhatsApp API",
+      "Admin dashboards",
+      "Role-based access",
+    ],
+    repoUrl: "https://github.com/ashish8513",
     featured: true,
   },
   {
     title: "Real-Time Chat Application",
-    description:
-      "Bi-directional messaging with Socket.io: group rooms, DMs, presence, read receipts, and MongoDB persistence — Tailwind CSS UI.",
+    period: "2023",
+    summary:
+      "Socket.io chat with group rooms, direct messages, presence, and read receipts — MongoDB-backed persistence.",
+    highlights: [
+      "Bi-directional messaging with rooms, DMs, and live presence indicators.",
+      "Read receipts and message history stored in MongoDB with indexed queries.",
+      "Responsive Tailwind UI with optimistic updates for snappy sends.",
+    ],
+    details:
+      "Built a real-time messaging client and Node server: users join rooms or start DMs, see who is online, and get delivery/read states without refreshing. Messages persist in MongoDB for history scrollback; the React front end uses Tailwind for layout and keeps the send path optimistic for perceived speed.",
     image:
-      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&q=80",
-    stack: ["React.js", "Node.js", "Socket.io", "MongoDB", "Tailwind CSS"],
+      "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=960&q=80",
+    stack: [
+      "React.js",
+      "Node.js",
+      "Socket.io",
+      "MongoDB",
+      "Tailwind CSS",
+      "REST APIs",
+      "WebSockets",
+      "JWT",
+    ],
+    repoUrl: "https://github.com/ashish8513",
   },
 ];
 
@@ -218,35 +349,51 @@ export type ProfileLink = {
   name: string;
   description: string;
   href: string;
-  statLabel: string;
-  statValue: string;
-  icon: "github" | "leetcode" | "linkedin";
+  /** One-line stat shown under the compare slider */
+  highlight: string;
+  icon: "github" | "leetcode" | "gfg" | "linkedin";
+  /** Screenshot in /public/profiles — hover reveals full brightness */
+  image?: string;
+  beforeImage?: string;
+  afterImage?: string;
 };
 
 export const profiles: ProfileLink[] = [
   {
     name: "GitHub",
-    description: "Projects and experiments.",
+    description: "AI Product Builder · SaaS & AI tools.",
     href: "https://github.com/ashish8513",
-    statLabel: "Handle",
-    statValue: "@ashish8513",
+    highlight:
+      "Ashish Prabhakar · 101 repositories · full-stack, MERN & open-source projects.",
     icon: "github",
+    image: "/profiles/github.png",
   },
   {
     name: "LeetCode",
     description: "DSA & patterns practice.",
-    href: "https://leetcode.com",
-    statLabel: "Practice",
-    statValue: "Active",
+    href: "https://leetcode.com/u/ashish8513/",
+    highlight:
+      "373 problems solved · 220 submissions in the past year · max streak 12 days.",
     icon: "leetcode",
+    image: "/profiles/leetcode.png",
+  },
+  {
+    name: "GeeksforGeeks",
+    description: "Coding score & practice.",
+    href: "https://www.geeksforgeeks.org/profile/ashish8513?tab=activity",
+    highlight:
+      "Coding score on GFG · Chandigarh University · building consistency on POTD.",
+    icon: "gfg",
+    image: "/profiles/gfg.png",
   },
   {
     name: "LinkedIn",
     description: "Experience and connect.",
-    href: "https://linkedin.com/in/ashish-prabhakar",
-    statLabel: "Profile",
-    statValue: "/in/ashish-prabhakar",
+    href: "https://www.linkedin.com/in/ashishprabhakar2004/",
+    highlight:
+      "Full Stack Engineer · MERN · React · Node.js · open to MNC opportunities.",
     icon: "linkedin",
+    image: "/profiles/linkedin.png",
   },
 ];
 

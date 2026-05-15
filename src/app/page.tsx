@@ -5,7 +5,6 @@ import { Hero } from "@/components/sections/hero";
 import { Profiles } from "@/components/sections/profiles";
 import { Projects } from "@/components/sections/projects";
 import { SkillsShowcase } from "@/components/sections/skills-showcase";
-import { Signature } from "@/components/sections/signature";
 import { Testimonials } from "@/components/sections/testimonials";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -23,7 +22,6 @@ export default function Home() {
         <About />
         <SkillsShowcase />
         <Experience />
-        <Signature />
         <Projects />
         <Profiles />
         <Testimonials />

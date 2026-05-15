@@ -22,6 +22,11 @@
   --border-glass: rgba(255, 255, 255, 0.08);
   --glow-indigo: rgba(76, 129, 227, 0.32);
   --glow-cyan: rgba(47, 90, 171, 0.22);
+  --ai-accent: #8b5cf6;
+  --ai-accent-bright: #a78bfa;
+  --ai-accent-rgb: 139, 92, 246;
+  --ai-glow: rgba(139, 92, 246, 0.38);
+  --ai-border: rgba(139, 92, 246, 0.35);
 }
 
 [data-theme="light"] {
@@ -290,6 +295,13 @@ body {
   .skip-link {
     transition: none;
   }
+}
+
+.skills-ai-lane {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(var(--ai-accent-rgb), 0.14), transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(var(--accent-primary-rgb), 0.12), transparent 50%),
+    linear-gradient(165deg, #0a0812 0%, #060606 45%, #050508 100%);
 }
 
 /* GitHub brand greens — contributions graph, pills, profile cards */

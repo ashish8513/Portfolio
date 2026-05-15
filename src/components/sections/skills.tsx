@@ -2,11 +2,11 @@
 
 import { MotionReveal } from "@/components/motion-reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { skills, type SkillCategory } from "@/lib/content";
+import { skillCategoryOrder, skills, type SkillCategory } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "framer-motion";
 
-const categories: SkillCategory[] = ["Frontend", "Backend", "Tools"];
+const categories: SkillCategory[] = skillCategoryOrder;
 
 export function Skills() {
   const reduce = useReducedMotion();
